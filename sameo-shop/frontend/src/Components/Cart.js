@@ -1,5 +1,9 @@
 import '../CSS/Cart.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import React from 'react';
+import services from '../services.js';
+
+
 
 
 
@@ -9,6 +13,17 @@ function Cart({ cart, updateCart }){
         (acc, itemType) => acc + itemType.amount * itemType.price,
         0
     );
+
+    function handlePost(e){
+        services.takeOrder(cart)
+            .then((res) => {
+                res.json({message: 'Commande enregistrée'});
+            });
+        
+    };
+    
+
+
     return isOpen ? (
         <div className="cart-open">
             <button className="cart-button" onClick={() => setIsOpen(false)}>Fermer</button>
@@ -20,6 +35,10 @@ function Cart({ cart, updateCart }){
             ))}
 
             <h3>Total : {total}€</h3>
+            <form onSubmit={(e) => handlePost(e)}>
+                {console.log(cart)}
+            <button>Commander</button>
+            </form>
             <button onClick={() => updateCart([])}>Vider le panier</button>
         </div>
     ) : (

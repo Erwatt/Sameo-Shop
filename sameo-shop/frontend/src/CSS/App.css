@@ -1,0 +1,13 @@
+.App{
+  background-color: greenyellow;
+}
+
+.cart{
+  margin-top: 100px;
+}
+
+.shop{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

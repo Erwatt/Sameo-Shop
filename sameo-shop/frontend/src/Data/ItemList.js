@@ -7,6 +7,7 @@ import hotDog from '../Images/hot-dog.jpg';
 import serviette from '../Images/serviette.jpg';
 import savon from '../Images/savon.jpg';
 import pq from '../Images/pq.jpg';
+import caniche from '../Images/caniche.jpg';
 
 export const ItemList = [
     {
@@ -71,6 +72,13 @@ export const ItemList = [
         category: 'autres',
         price: 0.5,
         cover: pq
+    },
+    {
+        id: 'bcd',
+        name: 'Caniche',
+        category: 'Animaux',
+        price: 100,
+        cover: caniche
     }
 
 ]
