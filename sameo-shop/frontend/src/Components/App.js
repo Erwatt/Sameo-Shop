@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>{!data ? "Loading" : data}</p>
+      <p className="momo">{!data ? "Loading" : data}</p>
       <Header/>
       <div className="shop">
         <ShoppingList cart={cart} updateCart={updateCart}/>

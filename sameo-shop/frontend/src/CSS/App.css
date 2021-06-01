@@ -11,3 +11,14 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.momo{
+  border-color: blueviolet;
+  border-style: solid;
+  border-width: 3px;
+  color: fuchsia;
+  background-color: gold;
+  text-align: center;
+  width:16%;
+  margin-left: 43%;
+}

@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 
 app.get("/api",(req, res) => {
-    res.json({message: "Le boeuf c'est du porc ?"});
+    res.json({message: `"Le boeuf c'est du porc ?" : Morgane le 01/06/2020 à 11h27` });
 });
 
 module.exports = app;
