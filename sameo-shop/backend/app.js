@@ -2,9 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const order = require('./models/order');
+require('dotenv').config();
 
 const app = express();
-mongoose.connect('mongodb+srv://Erwan:MdpUser1@sameoshop.tpdsg.mongodb.net/sameo-shop?retryWrites=true&w=majority',{ useNewUrlParser: true,
+mongoose.connect(process.env.DATABASE,{ useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false   })

@@ -1,5 +1,5 @@
 import '../CSS/Cart.css';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import React from 'react';
 import services from '../services.js';
 
