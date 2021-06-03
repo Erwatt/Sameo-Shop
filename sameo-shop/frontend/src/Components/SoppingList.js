@@ -30,15 +30,15 @@ function ShoppingList({ cart, updateCart }){
 
     return (
         <div>
-            <select name="categories" id="category_select" onChange={(e) => setSelectValue(e.target.value)}>
+            <select key="select" name="categories" id="category_select" onChange={(e) => setSelectValue(e.target.value)}>
                 <option value='all' key='all'>Tous les produits</option>
-                {categories.map((cat) => (
-                    <option value={cat} key={cat}>{cat}</option>
+                {categories.map((cat, index) => (
+                    <option value={cat} key={`${cat}-${index}`}>{cat}</option>
                 ))}
             </select>
             {console.log(selectValue)}
             <ul className="items-list">
-                {ItemList.map(({ id, cover, name, price, category}) =>(
+                {ItemList.map(({ id, cover, name, price, category}, index) =>(
                     ((category === selectValue) || (selectValue === 'all'))?
                         <div>
                         <Items
@@ -46,6 +46,7 @@ function ShoppingList({ cart, updateCart }){
                             cover={cover}
                             name={name}
                             price={price}
+                            index={index}
                         />
                         <button onClick={() => addToCart(name, price)}>Ajouter</button>
                     </div>

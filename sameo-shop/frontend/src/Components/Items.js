@@ -1,9 +1,9 @@
 import '../CSS/Items.css';
 
 
-function Items({ id, cover, name, price }){
+function Items({ id, cover, name, price, index }){
     return (
-        <li key={id} className='items' /*onClick={() => handleClick(name)}*/>
+        <li key={`${index}-${id}`} className='items' /*onClick={() => handleClick(name)}*/>
             <img className='item-cover' src={cover} alt={`${name} cover`}/>
             <h1>{name}</h1>
             <p>Prix: {price}€</p>
