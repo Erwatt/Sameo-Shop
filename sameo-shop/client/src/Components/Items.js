@@ -1,5 +1,5 @@
 import '../CSS/Items.css';
-
+import React from 'react';
 
 function Items({ id, cover, name, price, index }){
     return (

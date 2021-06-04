@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer} = require('./controller');
+const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer} = require('../controllers/controller');
 
 router.post('/Order', takeOrder);
 router.get('/OrderList', seeOrder);

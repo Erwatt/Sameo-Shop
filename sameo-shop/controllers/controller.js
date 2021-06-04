@@ -1,5 +1,5 @@
-const Order = require('./models/order');
-const Customer = require('./models/customer');
+const Order = require('../models/order');
+const Customer = require('../models/customer');
 
 exports.takeOrder = (req, res) => {
     let {cart, customer} = req.body;

@@ -1,7 +1,7 @@
 import {ItemList} from '../Data/ItemList';
 import Items from './Items';
 import '../CSS/ShoppingList.css';
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 
 function ShoppingList({ cart, updateCart }){
