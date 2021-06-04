@@ -1,5 +1,5 @@
 import '../CSS/Cart.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import React from 'react';
 import services from '../services.js';
 
@@ -8,19 +8,26 @@ import services from '../services.js';
 
 
 function Cart({ cart, updateCart }){
-    const [isOpen, setIsOpen] = useState(true);
-    const total = cart.reduce(
-        (acc, itemType) => acc + itemType.amount * itemType.price,
-        0
-    );
+        const [isOpen, setIsOpen] = useState(true);
+        const [customersList, setCustomersList] = useState([]);
+        const [selectedCustomer, setSelectedCustomer] = useState('');
+        const total = cart.reduce(
+            (acc, itemType) => acc + itemType.amount * itemType.price,
+            0
+            );
 
     function handlePost(e){
-        services.takeOrder(cart)
+        services.takeOrder(cart, selectedCustomer)
             .then((res) => {
                 res.json({message: 'Commande enregistrée'});
             });
         
     };
+
+    useEffect(() => {
+        services.getCustomers()
+        .then((res) => setCustomersList(res.data));
+    });
     
 
 
@@ -36,7 +43,12 @@ function Cart({ cart, updateCart }){
 
             <h3>Total : {total}€</h3>
             <form onSubmit={(e) => handlePost(e)}>
-                {console.log(cart)}
+                <select name="customersList"  onChange={(e) => setSelectedCustomer(e.target.value)}>
+                    <option selected>Choisissez votre nom</option>
+                {customersList.map(({name, firstname}) => (
+                    <option value={name} key={name}>{name} {firstname}</option>
+                ))}
+            </select>
             <button>Commander</button>
             </form>
             <button onClick={() => updateCart([])}>Vider le panier</button>

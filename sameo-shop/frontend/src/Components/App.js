@@ -5,6 +5,7 @@ import Cart from './Cart';
 import Header from './Header';
 import React from 'react';
 import Admin from './Admin';
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 
 function App() {
   const [cart, updateCart] = useState([]);
@@ -20,11 +21,16 @@ function App() {
     <div className="App">
       <p className="momo">{!data ? "Loading" : data}</p>
       <Header/>
-      <div className="shop">
-        <ShoppingList cart={cart} updateCart={updateCart}/>
-        <Cart className="cart" cart={cart} updateCart={updateCart}/>
-        <Admin/>
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <div className="shop">
+            <ShoppingList cart={cart} updateCart={updateCart}/>
+            <Cart className="cart" cart={cart} updateCart={updateCart}/>
+          </div>
+        </Route>
+        <Route path="/Admin" component={Admin}/>
+      </Switch>
+      
     </div>
   );
 }
