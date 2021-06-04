@@ -1,6 +1,8 @@
 
 const http = require('http');
 const app = require('./app');
+const path = require('path');
+const express = require('express');
 
 const route = require('./routes/route');
 
@@ -47,6 +49,14 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+app.use(express.static(path.resolve(__dirname,'./client/build')));
+
+
+
 app.use('/api', route);
+
+app.get('*', (req, res) => {
+  res.sendFile(pat.resolve(__dirname, './cleint/build', 'index.html'));
+})
 
 server.listen(port);
