@@ -47,8 +47,9 @@ function ShoppingList({ cart, updateCart }){
                             name={name}
                             price={price}
                             index={index}
+                            addToCart={addToCart}
                         />
-                        <button onClick={() => addToCart(name, price)}>Ajouter</button>
+                        {/* <button onClick={() => addToCart(name, price)}>Ajouter</button> */}
                     </div>
                     
                     

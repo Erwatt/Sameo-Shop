@@ -1,14 +1,17 @@
 import Services from '../services';
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 
 
 
-function Admin(){
+function Admin({assignedClient, setAssignedClient}){
     const [ordersList, setOrdersList] = useState(null);
     const [customersList, setCustomersList] = useState([]);
     const [customerName, setCustomerName] = useState('');
     const [customerFirstname, setCustomerFirstname] = useState('');
     const [selectedCustomer, setSelectedCustomer] = useState('');
+    const history = useHistory();
+    const [selectedClientForRoom, setSelectedClientForRoom] = useState(null);
 
     // function handleGet(){
     //     Services.seeOrder()
@@ -28,15 +31,36 @@ function Admin(){
         .then((res) => setCustomersList(res.data));
     });
 
+    useEffect(() => {
+        Services.getAssignedClient("room")
+        .then((res) => setAssignedClient(res.data.client));
+        // console.log(assignedClient)
+    });
+
     function handleDelete(){
         // console.log(selectedCustomer)
+        history.push('/');
         const custom = selectedCustomer.toString();
         Services.deleteOrder(custom);
     };
 
-    function handleNewCustomer(e){
+    function handleNewCustomer(){
+        history.push('/');
         Services.newCustomer(customerName, customerFirstname);
+    };
+
+    function handleNewRoom(){
+        // history.push('/');
+        // console.log("coucou")
+        Services.createRoom("room", "test");
+    };
+
+    function handleAssignment(){
+        // history.push('/');
+        Services.assignClient("room", selectedClientForRoom);
     }
+
+
 
     return (
         <div>
@@ -48,7 +72,7 @@ function Admin(){
             </select>
             {ordersList !== null ?(
                 <div>
-                    <form onSubmit={(e) => handleDelete(e)}>
+                    <form onSubmit={() => handleDelete()}>
                         <button>Supprimer la commande</button>
                     </form>
                     <ul className="ordersList">
@@ -64,8 +88,26 @@ function Admin(){
                     </ul>
                 </div>
             ): null}
+            <div className="customerAssignment">
+                <h1>Assignation aux salles</h1>
+                <h2>Salle 1</h2>
+                {assignedClient !== null ? (
+                    <p>Client actuel: {assignedClient}</p>
+                ):(
+                    <p>Aucun client acutellement assigné</p>
+                )}
+                <select name="customersList" onChange={(e) => setSelectedClientForRoom(e.target.value)}>
+                    <option selected>Choisissez un client</option>
+                    {customersList.map(({name, firstname}) => (
+                        <option value={name} key={name}>{name} {firstname}</option>
+                    ))}
+                </select>
+                <form onSubmit={() => handleAssignment()}>
+                    <button /*onClick={() => setAssignedClient(selectedClientForRoom)}*/>Assigner à la salle</button>
+                </form>
+            </div>
             <div className="CreateCustomer">
-                <form onSubmit={(e) => handleNewCustomer(e)}>
+                <form onSubmit={() => handleNewCustomer()}>
                     <label>Nom du client</label>
                     <input onChange={(e) => setCustomerName(e.target.value)} placeholder="Nom"/>
                     <label>Prénom du client</label>
@@ -73,6 +115,7 @@ function Admin(){
                     <button>Confirmer</button>
                 </form>
             </div>
+            <button onClick={handleNewRoom}>Nouvelle salle</button>
         </div>
     );
 }

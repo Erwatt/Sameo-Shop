@@ -1,5 +1,6 @@
 const Order = require('../models/order');
 const Customer = require('../models/customer');
+const Room = require('../models/room');
 
 exports.takeOrder = (req, res) => {
     let {cart, customer} = req.body;
@@ -30,6 +31,14 @@ exports.seeOrder = (req, res) => {
         
 };
 
+exports.getAssignedClient = (req, res) => {
+    const name = req.query.name;
+    // console.log(name)
+    Room.findOne({name: name})
+        .then(client => res.status(200).json(client))
+        .catch(error => res.status(400).json({error}));
+};
+
 exports.deleteOrder = (req, res) => {
     const customer = req.body.customer;
     console.log(customer)
@@ -53,5 +62,24 @@ exports.newCustomer = (req, res) => {
     });
     customer.save()
         .then(() => res.status(201).json({message: 'Client créé'}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.createRoom = (req, res) => {
+    let {name, client} = req.body;
+    const room = new Room({
+        name: name,
+        client: client
+    });
+    room.save()
+        .then(() => res.status(201).json({message:'Salle crée'}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.assignClient = (req, res) => {
+    let {name, client} = req.body;
+    console.log(client)
+    Room.updateOne({name: name}, {client: client, name: name})
+        .then(() => res.status(200).json({message:'Client modifié'}))
         .catch(error => res.status(400).json({error}));
 };

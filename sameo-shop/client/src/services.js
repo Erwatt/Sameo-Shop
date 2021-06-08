@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = "https://sameo-shop.herokuapp.com/api/";
-// const API_URL = 'http://localhost:3001/api/';
+// const API_URL = "https://sameo-shop.herokuapp.com/api/";
+const API_URL = 'http://localhost:3001/api/';
 
 class services {
     takeOrder(cart, customer){
@@ -27,6 +27,21 @@ class services {
     newCustomer(name, firstname){
         return axios
             .post(API_URL + 'CreateCustomer', {name, firstname});
+    };
+
+    createRoom(name, client){
+        return axios
+            .post(API_URL + 'CreateRoom', {name, client});
+    };
+
+    assignClient(name, client){
+        return axios
+            .put(API_URL + 'AssignClient', {name, client});
+    };
+
+    getAssignedClient(name){
+        return axios
+            .get(API_URL + 'GetAssignedClient', {params : {name: name}});
     };
 };
 

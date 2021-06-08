@@ -1,4 +1,4 @@
-import '../CSS/Cart.css';
+import '../CSS/Cart.scss';
 import {useState, useEffect} from 'react';
 import React from 'react';
 import services from '../services.js';
@@ -7,9 +7,9 @@ import services from '../services.js';
 
 
 
-function Cart({ cart, updateCart }){
+function Cart({ cart, updateCart, assignedClient }){
         const [isOpen, setIsOpen] = useState(true);
-        const [customersList, setCustomersList] = useState([]);
+        // const [customersList, setCustomersList] = useState([]);
         const [selectedCustomer, setSelectedCustomer] = useState('');
         const total = cart.reduce(
             (acc, itemType) => acc + itemType.amount * itemType.price,
@@ -25,9 +25,15 @@ function Cart({ cart, updateCart }){
     };
 
     useEffect(() => {
-        services.getCustomers()
-        .then((res) => setCustomersList(res.data));
+        services.getAssignedClient("room")
+        .then((res) => setSelectedCustomer(res.data.client));
+        // console.log(assignedClient)
     });
+
+    // useEffect(() => {
+    //     services.getCustomers()
+    //     .then((res) => setCustomersList(res.data));
+    // });
     
 
 
@@ -35,6 +41,7 @@ function Cart({ cart, updateCart }){
         <div className="cart-open">
             <button className="cart-button" onClick={() => setIsOpen(false)}>Fermer</button>
             <h2>Panier</h2>
+            <h1>{assignedClient}</h1>
             {cart.map(({ name, price, amount }, index) => (
                 <div key={`${name}-${index}`}>
                     {name} {price}€ x {amount}
@@ -43,15 +50,16 @@ function Cart({ cart, updateCart }){
 
             <h3>Total : {total}€</h3>
             <form onSubmit={(e) => handlePost(e)}>
-                <select name="customersList"  onChange={(e) => setSelectedCustomer(e.target.value)}>
+                {/* <select name="customersList"  onChange={(e) => setSelectedCustomer(e.target.value)}>
                     <option selected>Choisissez votre nom</option>
                 {customersList.map(({name, firstname}) => (
                     <option value={name} key={name}>{name} {firstname}</option>
                 ))}
-            </select>
-            <button>Commander</button>
+            </select> */}
+                <h2>Client actuel : {selectedCustomer}</h2>
+            <button className="cart_order">Commander</button>
             </form>
-            <button onClick={() => updateCart([])}>Vider le panier</button>
+            <button className="cart_empty" onClick={() => updateCart([])}>Vider le panier</button>
         </div>
     ) : (
         <div className="cart-closed">

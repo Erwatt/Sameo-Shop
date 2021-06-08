@@ -4,6 +4,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	max-width: 800px;
-	background-color: aqua;
+	background-color: rgba(12, 182, 154, 0.671);
 	border-radius: 10px;
 }

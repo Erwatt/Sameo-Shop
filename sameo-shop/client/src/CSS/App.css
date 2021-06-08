@@ -1,15 +1,16 @@
 .App{
-  background-color: greenyellow;
+  background-color: rgb(255, 255, 255);
 }
 
-.cart{
-  margin-top: 100px;
-}
 
 .shop{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content:left;
+}
+
+.list{
+  margin-left: 10%;
 }
 
 .momo{
