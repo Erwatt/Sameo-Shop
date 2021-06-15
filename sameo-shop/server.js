@@ -1,8 +1,10 @@
 
 const http = require('http');
 const app = require('./app');
+const path = require('path');
+const express = require('express');
 
-const route = require('./route');
+const route = require('./routes/route');
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
@@ -47,6 +49,14 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+app.use(express.static(path.resolve(__dirname,'./client/build')));
+
+
+
 app.use('/api', route);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+})
 
 server.listen(port);

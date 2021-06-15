@@ -5,10 +5,23 @@
 	justify-content: center;
 	flex-direction: column;
 	text-transform: capitalize;
+	text-align: center;
 }
 
 .item-cover {
 	height: 220px;
 	width: 220px;
 	border-radius: 20px;
+	cursor: pointer;
+}
+
+.Item_Name{
+	font-size: 150%;
+	/* color: aqua; */
+	font-family: 'Bell-Melt';
+	font-weight:normal
+}
+
+.Item_Price{
+	font-family: 'Bell-Melt';
 }

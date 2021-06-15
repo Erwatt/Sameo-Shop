@@ -1,7 +1,7 @@
 import {ItemList} from '../Data/ItemList';
 import Items from './Items';
 import '../CSS/ShoppingList.css';
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 
 function ShoppingList({ cart, updateCart }){
@@ -47,8 +47,9 @@ function ShoppingList({ cart, updateCart }){
                             name={name}
                             price={price}
                             index={index}
+                            addToCart={addToCart}
                         />
-                        <button onClick={() => addToCart(name, price)}>Ajouter</button>
+                        {/* <button onClick={() => addToCart(name, price)}>Ajouter</button> */}
                     </div>
                     
                     
