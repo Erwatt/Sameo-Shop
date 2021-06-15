@@ -56,7 +56,7 @@ app.use(express.static(path.resolve(__dirname,'./client/build')));
 app.use('/api', route);
 
 app.get('*', (req, res) => {
-  res.sendFile(pat.resolve(__dirname, './client/build', 'index.js'));
+  res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
 })
 
 server.listen(port);

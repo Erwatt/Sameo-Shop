@@ -1,6 +1,6 @@
 import Services from '../services';
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+// import {useHistory} from 'react-router-dom';
 
 
 
@@ -10,8 +10,11 @@ function Admin({assignedClient, setAssignedClient}){
     const [customerName, setCustomerName] = useState('');
     const [customerFirstname, setCustomerFirstname] = useState('');
     const [selectedCustomer, setSelectedCustomer] = useState('');
-    const history = useHistory();
+    // const history = useHistory();
     const [selectedClientForRoom, setSelectedClientForRoom] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
+    const [userPassword, setUserPassword] = useState(null);
+    const [userRole, setUserRole] = useState(null);
 
     // function handleGet(){
     //     Services.seeOrder()
@@ -24,12 +27,12 @@ function Admin({assignedClient, setAssignedClient}){
     useEffect(() => {
         Services.seeOrder()
         .then((res) => setOrdersList(res.data));
-    });
+    }, []);
 
     useEffect(() => {
         Services.getCustomers()
         .then((res) => setCustomersList(res.data));
-    });
+    }, []);
 
     useEffect(() => {
         Services.getAssignedClient("room")
@@ -39,13 +42,13 @@ function Admin({assignedClient, setAssignedClient}){
 
     function handleDelete(){
         // console.log(selectedCustomer)
-        history.push('/');
+        // history.push('/');
         const custom = selectedCustomer.toString();
         Services.deleteOrder(custom);
     };
 
     function handleNewCustomer(){
-        history.push('/');
+        // history.push('/');
         Services.newCustomer(customerName, customerFirstname);
     };
 
@@ -58,6 +61,11 @@ function Admin({assignedClient, setAssignedClient}){
     function handleAssignment(){
         // history.push('/');
         Services.assignClient("room", selectedClientForRoom);
+    }
+
+    function handleUserCreation(){
+        // history.push('/');
+        Services.signup(userEmail, userPassword, userRole);
     }
 
 
@@ -94,7 +102,7 @@ function Admin({assignedClient, setAssignedClient}){
                 {assignedClient !== null ? (
                     <p>Client actuel: {assignedClient}</p>
                 ):(
-                    <p>Aucun client acutellement assigné</p>
+                    <p>Aucun client actuellement assigné</p>
                 )}
                 <select name="customersList" onChange={(e) => setSelectedClientForRoom(e.target.value)}>
                     <option selected>Choisissez un client</option>
@@ -116,6 +124,22 @@ function Admin({assignedClient, setAssignedClient}){
                 </form>
             </div>
             <button onClick={handleNewRoom}>Nouvelle salle</button>
+            <div>
+                <h2>Nouvel utilisateur</h2>
+                <form onSubmit={handleUserCreation}>
+                    <label>Email</label>
+                    <input onChange={(e) => setUserEmail(e.target.value)} placeholder="Email" type="email"/>
+                    <label>Mot de passe</label>
+                    <input onChange={(e) => setUserPassword(e.target.value)} placeholder="Mot de passe"/>
+                    <label>Rôle</label>
+                    <select onChange={(e) => setUserRole(e.target.value)}>
+                        <option selected='true'>Choisissez un rôle</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Salle1">Salle 1</option>
+                    </select>
+                    <button>Valider</button>
+                </form>
+            </div>
         </div>
     );
 }

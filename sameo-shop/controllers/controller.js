@@ -1,6 +1,7 @@
 const Order = require('../models/order');
 const Customer = require('../models/customer');
 const Room = require('../models/room');
+const Nodemailer = require('nodemailer');
 
 exports.takeOrder = (req, res) => {
     let {cart, customer} = req.body;
@@ -29,6 +30,45 @@ exports.seeOrder = (req, res) => {
         .then(orders => res.status(200).json(orders))
         .catch(error => res.status(400).json({error}));
         
+};
+
+exports.announceOrder = (req, res) => {
+    let {cart, customer} = req.body;
+    console.log(cart)
+    var txt = ''
+    cart.map(({name, amount}) => {
+        txt += (name + " x " + amount + "                      ")
+    })
+    const transporter = Nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        auth: {
+          user: process.env.SENDER,
+          pass: process.env.PASSWORD
+        }
+    });
+
+    const mailOptions = {
+        from: process.env.SENDER,
+        to: process.env.RECEIVER,
+        subject: "Nouvelle Commande",
+        html: ` nouvelle commande ${txt}`
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+          res.status(500).json({
+            message: "Impossible d'envoyer le courriel de vérification à ",
+          })
+        } else {
+          res.status(200).json({
+            success: true,
+            message: `Courriel envoyé`
+          })
+          console.log('Email sent: ' + info.response);
+        }
+    });         
 };
 
 exports.getAssignedClient = (req, res) => {

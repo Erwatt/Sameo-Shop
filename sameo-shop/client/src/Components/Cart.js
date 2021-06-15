@@ -21,6 +21,8 @@ function Cart({ cart, updateCart, assignedClient }){
             .then((res) => {
                 res.json({message: 'Commande enregistrée'});
             });
+
+        services.announceOrder(cart, selectedCustomer);
         
     };
 

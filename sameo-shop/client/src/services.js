@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 // const API_URL = "https://sameo-shop.herokuapp.com/api/";
 const API_URL = 'http://localhost:3001/api/';
 
@@ -8,6 +9,11 @@ class services {
         return axios
             .post(API_URL + 'Order', {cart, customer});
     };
+
+    announceOrder(cart, customer){
+        return axios
+            .post(API_URL + 'AnnounceOrder', {cart, customer});
+    }
 
     seeOrder(){
         return axios
@@ -43,6 +49,29 @@ class services {
         return axios
             .get(API_URL + 'GetAssignedClient', {params : {name: name}});
     };
+
+    signup(email, password, role){
+        console.log("service")
+        return axios
+            .post(API_URL + 'signup', {email, password, role});
+    };
+
+    login(email, password){
+        console.log('services')
+        return axios
+            .post(API_URL + 'login', {email, password})
+            .then(res => {
+                if (res.data.token) {
+                    localStorage.setItem("user", JSON.stringify(res.data));
+                }
+
+                return res.data;
+            });
+    };
+
+    getCurrentUser() {
+        return JSON.parse(localStorage.getItem('user'));;
+      }
 };
 
 export default new services();

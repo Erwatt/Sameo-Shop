@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer, createRoom, assignClient, getAssignedClient} = require('../controllers/controller');
+const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer, createRoom, assignClient, getAssignedClient, announceOrder} = require('../controllers/controller');
+const {signup, login} = require('../controllers/userController');
+
+
+router.post('/signup', signup);
+router.post('/login', login);
 
 router.post('/Order', takeOrder);
 router.get('/OrderList', seeOrder);
@@ -11,5 +16,6 @@ router.post('/CreateCustomer', newCustomer);
 router.post('/CreateRoom', createRoom);
 router.put('/AssignClient', assignClient);
 router.get('/GetAssignedClient', getAssignedClient);
+router.post('/AnnounceOrder', announceOrder);
 
 module.exports = router;

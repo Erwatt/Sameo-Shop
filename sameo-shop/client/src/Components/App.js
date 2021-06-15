@@ -5,6 +5,8 @@ import Cart from './Cart';
 import Header from './Header';
 import React from 'react';
 import Admin from './Admin';
+import Login from './Login';
+import ProtectedRoute from './ProtectedRoute';
 import { Route, Switch} from 'react-router-dom';
 
 
@@ -33,13 +35,14 @@ function App() {
       <Switch>
         <Route exact path="/">
           <div className="shop">
-            <Cart cart={cart} updateCart={updateCart} assignedClient={assignedClient} />
+            <Cart cart={cart} updateCart={updateCart} />
             <div className="list">
               <ShoppingList cart={cart} updateCart={updateCart}/>
             </div>
           </div>
         </Route>
-        <Route exact path="/Admin" ><Admin assignedClient={assignedClient} setAssignedClient={setAssignedClient} /></Route>
+        <ProtectedRoute exact path="/Admin" component={() => <Admin assignedClient={assignedClient} setAssignedClient={setAssignedClient}/>} role={["Admin"]}/>
+        <Route exact path="/Login" component={Login}/>
       </Switch>
       
     </div>
