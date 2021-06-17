@@ -6,6 +6,7 @@ import Header from './Header';
 import React from 'react';
 import Admin from './Admin';
 import Login from './Login';
+import Home from './Home';
 import ProtectedRoute from './ProtectedRoute';
 import { Route, Switch} from 'react-router-dom';
 
@@ -33,16 +34,15 @@ function App() {
       <p className="momo">{!data ? "Loading" : data}</p>
       <Header/>
       <Switch>
-        <Route exact path="/">
-          <div className="shop">
+        <Route exact path="/" component={Home}/>
+        <ProtectedRoute exact path="/Salle1" component={() => <div className="shop">
             <Cart cart={cart} updateCart={updateCart} />
             <div className="list">
               <ShoppingList cart={cart} updateCart={updateCart}/>
             </div>
-          </div>
-        </Route>
+          </div> } role={["Salle1", "Admin"]}/>
         <ProtectedRoute exact path="/Admin" component={() => <Admin assignedClient={assignedClient} setAssignedClient={setAssignedClient}/>} role={["Admin"]}/>
-        <Route exact path="/Login" component={Login}/>
+        <Route exact path="/SignIn" component={Login}/>
       </Switch>
       
     </div>

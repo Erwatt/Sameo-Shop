@@ -57,17 +57,15 @@ class services {
     };
 
     login(email, password){
-        console.log('services')
         return axios
             .post(API_URL + 'login', {email, password})
-            .then(res => {
-                if (res.data.token) {
-                    localStorage.setItem("user", JSON.stringify(res.data));
+            .then(response => {
+                if (response.data.token) {
+                    localStorage.setItem("user", JSON.stringify(response.data));
                 }
-
-                return res.data;
+                return response.data;
             });
-    };
+    }
 
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'));;

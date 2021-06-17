@@ -8,6 +8,7 @@ import serviette from '../Images/serviette.jpg';
 import savon from '../Images/savon.jpg';
 import pq from '../Images/pq.jpg';
 import caniche from '../Images/caniche.jpg';
+import salesGosses from '../Images/sales_gosses.jpg';
 
 export const ItemList = [
     {
@@ -79,6 +80,13 @@ export const ItemList = [
         category: 'Animaux',
         price: 100,
         cover: caniche
+    },
+    {
+        id: 'efg',
+        name: 'Sales gosses (pack de 2)',
+        category: 'Animaux?',
+        price: 2,
+        cover: salesGosses
     }
 
 ]

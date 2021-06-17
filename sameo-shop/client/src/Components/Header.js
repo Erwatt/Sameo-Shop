@@ -15,7 +15,7 @@ function Header(){
                 <h1>La Couture du Charme</h1>
                 <h2>Saméo-Shop</h2>
                 {/* <p onClick={handleAdmin}>Admin</p> */}
-                <Link to={"/Admin"}><p>Admin</p></Link>
+                <Link to={"/"}><p>Home</p></Link>
             </div>
         </header>
     );

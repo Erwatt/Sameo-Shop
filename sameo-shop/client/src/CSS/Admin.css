@@ -1,0 +1,99 @@
+.admin_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background: linear-gradient(#e66465, #9198e5);
+}
+
+.admin_box2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+.admin_ordersList{
+    background-color: rgba(12, 182, 154, 0.671);
+    border-radius: 10px;
+    list-style-type: none;
+	padding: 32px;
+	display: flex;
+	flex-wrap: wrap;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.admin_orderItem{
+    margin: 5%;
+}
+
+.admin_element:nth-child(1){
+    background-color: #378b8b;
+    flex-basis: 40%;
+    text-align: center;
+}
+
+.admin_deleteOrders{
+    width: 30%;
+    text-align: center;
+    margin:auto;
+    margin-top: 1%;
+}
+
+.admin_element2{
+    background-color:#378b8b;
+    border-radius: 10px;
+    margin-top: 3%;
+    border-style: solid;
+    border-width: 2px;
+}
+
+input{
+    margin-top: 2%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select{
+    margin-bottom: 2%;
+}
+
+h2{
+    margin-left: 5%;
+}
+
+.admin_role{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin_button{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.admin_assignSelect{
+    margin-left: 27%;
+}
+
+.admin_assignedClient{
+    margin-left: 30%;
+}
+
