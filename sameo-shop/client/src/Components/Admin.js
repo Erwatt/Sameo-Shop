@@ -16,6 +16,7 @@ function Admin({assignedClient, setAssignedClient}){
     const [userEmail, setUserEmail] = useState(null);
     const [userPassword, setUserPassword] = useState(null);
     const [userRole, setUserRole] = useState(null);
+    const [messageList, setMessageList] = useState([]);
 
     // function handleGet(){
     //     Services.seeOrder()
@@ -25,9 +26,23 @@ function Admin({assignedClient, setAssignedClient}){
 
     // }
     
+    
     useEffect(() => {
-        Services.seeOrder()
-        .then((res) => setOrdersList(res.data));
+        const interval = setInterval(() => {
+            Services.seeOrder()
+                .then((res) => setOrdersList(res.data));
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            Services.getMessages()
+                .then((res) => setMessageList(res.data));
+        }, 10000);
+
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
@@ -58,7 +73,7 @@ function Admin({assignedClient, setAssignedClient}){
     //     // console.log("coucou")
     //     Services.createRoom("room", "test");
     // };
-
+    // console.log(messageList)
     function handleAssignment(){
         // history.push('/');
         Services.assignClient("room", selectedClientForRoom);
@@ -99,6 +114,20 @@ function Admin({assignedClient, setAssignedClient}){
                     </div>
                 ):null}
             </div>
+            {messageList !== null ? (
+                <div className="admin_element">
+                <ul>
+                    {messageList.map(({id, customer, object, message}) => (
+                        <li key={id}>
+                            <h3>Message de {customer}</h3>
+                            <h5>{object}</h5>
+                            <p>{message}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            ): null}
+            
             <div className="admin_element">
                 <div className="admin_box2">
                     <div className="customerAssignment admin_element2">

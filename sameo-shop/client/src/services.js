@@ -76,6 +76,11 @@ class services {
         return axios
             .post(API_URL + 'SendMessage', {customer, object, message});
     };
+
+    getMessages(){
+        return axios
+            .get(API_URL + 'GetMsg');
+    };
     
 };
 

@@ -80,6 +80,12 @@ exports.getAssignedClient = (req, res) => {
         .catch(error => res.status(400).json({error}));
 };
 
+exports.getMessages = (req, res) => {
+    Message.find()
+        .then((messages) => res.status(200).json(messages))
+        .catch(error => res.status(400).json({error}));
+};
+
 exports.deleteOrder = (req, res) => {
     const customer = req.body.customer;
     console.log(customer)
@@ -126,7 +132,7 @@ exports.assignClient = (req, res) => {
 };
 
 exports.sendMessage = (req, res) => {
-    console.log('coucou')
+    // console.log('coucou')
     let {customer, object, message} = req.body;
     const msg = new Message({
         customer: customer,
