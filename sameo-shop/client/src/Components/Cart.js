@@ -11,6 +11,8 @@ function Cart({ cart, updateCart, assignedClient }){
         const [isOpen, setIsOpen] = useState(true);
         // const [customersList, setCustomersList] = useState([]);
         const [selectedCustomer, setSelectedCustomer] = useState('');
+        const [object, setObject] = useState('');
+        const [message, setMessage] = useState('');
         const total = cart.reduce(
             (acc, itemType) => acc + itemType.amount * itemType.price,
             0
@@ -24,6 +26,11 @@ function Cart({ cart, updateCart, assignedClient }){
 
         services.announceOrder(cart, selectedCustomer);
         
+    };
+
+    function handleMessage(){
+        services.sendMessage(selectedCustomer, object, message)
+            .then((res) => res.json({message: "Message envoyé"}));
     };
 
     useEffect(() => {
@@ -62,12 +69,20 @@ function Cart({ cart, updateCart, assignedClient }){
             <button className="cart_order">Commander</button>
             </form>
             <button className="cart_empty" onClick={() => updateCart([])}>Vider le panier</button>
+            <h2>Envoyer un message</h2>
+            <form onSubmit={() => handleMessage()}>
+                <label>Objet</label>
+                <input onChange={(e) => setObject(e.target.value)} placeholder="Objet"/>
+                <label>Message</label>
+                <textarea onChange={(e) => setMessage(e.target.value)} placeholder="Message"/>
+                <button>Envoyer</button>
+            </form>
         </div>
     ) : (
         <div className="cart-closed">
             <button className="cart-button" onClick={() => setIsOpen(true)}>Ouvrir</button>
         </div>
     );
-}
+};
 
 export default Cart;

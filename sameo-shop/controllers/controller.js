@@ -1,6 +1,7 @@
 const Order = require('../models/order');
 const Customer = require('../models/customer');
 const Room = require('../models/room');
+const Message = require('../models/message');
 const Nodemailer = require('nodemailer');
 
 exports.takeOrder = (req, res) => {
@@ -121,5 +122,36 @@ exports.assignClient = (req, res) => {
     console.log(client)
     Room.updateOne({name: name}, {client: client, name: name})
         .then(() => res.status(200).json({message:'Client modifié'}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.sendMessage = (req, res) => {
+    console.log('coucou')
+    let {customer, object, message} = req.body;
+    const msg = new Message({
+        customer: customer,
+        object: object,
+        message: message
+    });
+    const transporter = Nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        auth: {
+          user: process.env.SENDER,
+          pass: process.env.PASSWORD
+        }
+    });
+
+    const mailOptions = {
+        from: process.env.SENDER,
+        to: process.env.RECEIVER,
+        subject: object,
+        html: `Nouveau message de ${customer}: ${message}`
+    };
+
+    transporter.sendMail(mailOptions);
+
+    msg.save()
+        .then(() => res.status(201).json({message: 'Message créé et envoyé'}))
         .catch(error => res.status(400).json({error}));
 };

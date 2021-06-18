@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-const API_URL = "https://sameo-shop.herokuapp.com/api/";
-// const API_URL = 'http://localhost:3001/api/';
+// const API_URL = "https://sameo-shop.herokuapp.com/api/";
+const API_URL = 'http://localhost:3001/api/';
 
 class services {
     
@@ -70,7 +70,13 @@ class services {
 
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'));;
-      }
+    };
+
+    sendMessage(customer, object, message){
+        return axios
+            .post(API_URL + 'SendMessage', {customer, object, message});
+    };
+    
 };
 
 export default new services();
