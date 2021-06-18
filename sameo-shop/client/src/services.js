@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 
-// const API_URL = "https://sameo-shop.herokuapp.com/api/";
-const API_URL = 'http://localhost:3001/api/';
+const API_URL = "https://sameo-shop.herokuapp.com/api/";
+// const API_URL = 'http://localhost:3001/api/';
 
 class services {
+    
     takeOrder(cart, customer){
         return axios
             .post(API_URL + 'Order', {cart, customer});
@@ -65,7 +66,7 @@ class services {
                 }
                 return response.data;
             });
-    }
+    };
 
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'));;

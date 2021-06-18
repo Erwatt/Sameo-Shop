@@ -52,14 +52,14 @@ exports.announceOrder = (req, res) => {
         from: process.env.SENDER,
         to: process.env.RECEIVER,
         subject: "Nouvelle Commande",
-        html: ` nouvelle commande ${txt}`
+        html: ` nouvelle commande de ${customer}: ${txt}`
     };
 
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
           res.status(500).json({
-            message: "Impossible d'envoyer le courriel de vérification à ",
+            message: "Impossible d'envoyer le courriel",
           })
         } else {
           res.status(200).json({

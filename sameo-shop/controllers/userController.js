@@ -43,22 +43,23 @@ exports.login = (req, res) => {
                         return res.status(401).json({message:'Mot de pass incorrect'});
                     }
                     // console.log('ok')
-                    let access_token = createJWT(
-                        user.email,
-                        user._id,
-                        3600
-                    );
+                    // let access_token = createJWT(
+                    //     user.email,
+                    //     user._id,
+                    //     3600
+                    // );
+                    console.log("ok")
                     res.status(200).json({
                         userId: user._id,
-                        // token: jwt.sign(
-                        //     { userId: user._id },
-                        //     'RANDOM_TOKEN_SECRET',
-                        //     { expiresIn: '24h'}
-                        // ),
-                        token: access_token,
+                        token: jwt.sign(
+                            { userId: user._id },
+                            'RANDOM_TOKEN_SECRET',
+                            { expiresIn: '24h'}
+                        ),
+                        // token: access_token,
                         message: user
                     });
-                    console.log("ok")
+                    
                     
                 })
                 .catch(error => res.status(500).json({error}));
