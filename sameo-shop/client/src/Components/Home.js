@@ -39,7 +39,7 @@ function Home(){
             <div className="home_box">
                 <Link to="/Salle1"><button className="home_button">Salle piscine</button></Link>
                 <form onSubmit={() => logout()}>
-                    <button> className="home_button"Se déconnecter</button>
+                    <button className="home_button">Se déconnecter</button>
                 </form>
             </div>
         ):(
