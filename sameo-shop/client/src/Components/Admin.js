@@ -1,33 +1,28 @@
 import Services from '../services';
 import React, {useState, useEffect} from 'react';
 import '../CSS/Admin.css';
+// import notif from '../Audio/notif.wav';
 // import {useHistory} from 'react-router-dom';
 
 
 
 function Admin({assignedClient, setAssignedClient}){
-    const [ordersList, setOrdersList] = useState(null);
+    const [ordersList, setOrdersList] = useState([]);
     const [customersList, setCustomersList] = useState([]);
     const [customerName, setCustomerName] = useState('');
     const [customerFirstname, setCustomerFirstname] = useState('');
     const [selectedCustomer, setSelectedCustomer] = useState('');
-    // const history = useHistory();
     const [selectedClientForRoom, setSelectedClientForRoom] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
     const [userPassword, setUserPassword] = useState(null);
     const [userRole, setUserRole] = useState(null);
     const [messageList, setMessageList] = useState([]);
 
-    // function handleGet(){
-    //     Services.seeOrder()
-    //         .then((res) => res.json())
-    //         .then((ordersList) => setOrdersList(ordersList.message));
-    //         console.log(ordersList)
-
-    // }
     
     
     useEffect(() => {
+        Services.seeOrder()
+                .then((res) => setOrdersList(res.data))
         const interval = setInterval(() => {
             Services.seeOrder()
                 .then((res) => setOrdersList(res.data));
@@ -37,6 +32,10 @@ function Admin({assignedClient, setAssignedClient}){
     }, []);
 
     useEffect(() => {
+
+        Services.getMessages()
+                .then((res) => setMessageList(res.data))        
+
         const interval = setInterval(() => {
             Services.getMessages()
                 .then((res) => setMessageList(res.data));
@@ -77,12 +76,28 @@ function Admin({assignedClient, setAssignedClient}){
     function handleAssignment(){
         // history.push('/');
         Services.assignClient("room", selectedClientForRoom);
-    }
+    };
 
     function handleUserCreation(){
         // history.push('/');
         Services.signup(userEmail, userPassword, userRole);
-    }
+    };
+
+    function handleReaded(id){
+        Services.setAsReaded(id);
+    };
+
+    function handleDeleteMessage(id){
+        Services.deleteMessage(id);
+    };
+
+    function handleDone(id){
+        Services.setOrderAsDone(id);
+    };
+
+    useEffect(() => {
+
+    }, [])
 
 
 
@@ -95,19 +110,31 @@ function Admin({assignedClient, setAssignedClient}){
                         <option value={name} key={name}>{name} {firstname}</option>
                     ))}
                 </select>
-                {ordersList !== null ?(
+                {ordersList !== [] ?(
                     <div>
                         <form onSubmit={() => handleDelete()}>
                             <button className="admin_deleteOrders">Supprimer la commande</button>
                         </form>
                         <ul className="admin_ordersList">
-                            {ordersList.map(({id, name, price, amount,customer}, index) => (
+                            {ordersList.map(({_id, name, price, amount,customer, done}, index) => (
                                 customer === selectedCustomer ?(
-                                <li key={index} className="admin_orderItem">
-                                    <h2>{name}</h2>
-                                    <p>Prix: {price}€</p>
-                                    <p>Quantité: {amount}</p>
-                                </li>
+                                    done ? (
+                                        <li key={index} className="admin_orderItem">
+                                            <h2>{name}</h2>
+                                            <p>Prix: {price}€</p>
+                                            <p>Quantité: {amount}</p>
+                                        </li>
+                                    ):(
+                                        <li key={index} className="admin_orderItem admin_undone_order">
+                                            <h2>{name}</h2>
+                                            <p>Prix: {price}€</p>
+                                            <p>Quantité: {amount}</p>
+                                            <form onSubmit={() => handleDone(_id)}>
+                                                <button>Done</button>
+                                            </form>
+                                        </li>
+                                    )
+                                
                                 ) : null
                             ))}
                         </ul>
@@ -115,14 +142,29 @@ function Admin({assignedClient, setAssignedClient}){
                 ):null}
             </div>
             {messageList !== null ? (
-                <div className="admin_element">
+                <div className="admin_element admin_messageList">
                 <ul>
-                    {messageList.map(({id, customer, object, message}) => (
-                        <li key={id}>
-                            <h3>Message de {customer}</h3>
-                            <h5>{object}</h5>
-                            <p>{message}</p>
-                        </li>
+                    {messageList.map(({_id, customer, object, message, is_New}) => (
+                        is_New ? (
+                            <li key={_id} className="admin_message">
+                                <h3 className="admin_new_message">Message de {customer}</h3>
+                                <h5 className="admin_new_message">{object}</h5>
+                                <p className="admin_new_message">{message}</p>
+                                <form onSubmit={() => handleReaded(_id)}>
+                                    <button className="admin_button">Marquer comme lu</button>
+                                </form>
+                            </li>
+                        ): (
+                            <li key={_id} className="admin_message">
+                                <h3>Message de {customer}</h3>
+                                <h5>{object}</h5>
+                                <p>{message}</p>
+                                <form onSubmit={() => handleDeleteMessage(_id)}>
+                                    <button className="admin_button">Supprimer</button>
+                                </form>
+                            </li>
+                        )
+                        
                     ))}
                 </ul>
             </div>
@@ -131,8 +173,8 @@ function Admin({assignedClient, setAssignedClient}){
             <div className="admin_element">
                 <div className="admin_box2">
                     <div className="customerAssignment admin_element2">
-                        <h1>Assignation aux salles</h1>
-                        <h2>Salle 1</h2>
+                        <h2>Assignation aux salles</h2>
+                        <h3>Salle 1</h3>
                         {assignedClient !== null ? (
                             <p className="admin_assignedClient">Client actuel: {assignedClient}</p>
                         ):(
@@ -149,7 +191,7 @@ function Admin({assignedClient, setAssignedClient}){
                         </form>
                     </div>
                     <div className="CreateCustomer admin_element2">
-                        <h2>Nouveau client</h2>
+                        <h3>Nouveau client</h3>
                         <form onSubmit={() => handleNewCustomer()}>
                             <label>Nom du client</label>
                             <input onChange={(e) => setCustomerName(e.target.value)} placeholder="Nom"/>
@@ -160,7 +202,7 @@ function Admin({assignedClient, setAssignedClient}){
                     </div>
                     {/* <button onClick={handleNewRoom}>Nouvelle salle</button> */}
                     <div className="admin_newUser admin_element2">
-                        <h2>Nouvel utilisateur</h2>
+                        <h3>Nouvel utilisateur</h3>
                         <form onSubmit={handleUserCreation}>
                             <label>Email</label>
                             <input onChange={(e) => setUserEmail(e.target.value)} placeholder="Email" type="email"/>

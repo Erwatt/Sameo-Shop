@@ -14,7 +14,7 @@ class services {
     announceOrder(cart, customer){
         return axios
             .post(API_URL + 'AnnounceOrder', {cart, customer});
-    }
+    };
 
     seeOrder(){
         return axios
@@ -80,6 +80,25 @@ class services {
     getMessages(){
         return axios
             .get(API_URL + 'GetMsg');
+    };
+
+    setAsReaded(id){
+        return axios
+            .put(API_URL + 'Readed', {id});
+    };
+
+    deleteMessage(id){
+        return axios
+            .delete(API_URL + 'DeleteMessage', {data: {id}});
+    };
+
+    setOrderAsDone(id){
+        return axios
+            .put(API_URL + 'OrderDone', {id});
+    };
+
+    logout(){
+        localStorage.removeItem('user');
     };
     
 };

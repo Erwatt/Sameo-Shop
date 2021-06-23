@@ -1,5 +1,8 @@
-.App{
-  background-color: rgb(255, 255, 255);
+body{
+  background: url('../Images/background.jpeg');
+  background-position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 

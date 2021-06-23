@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background: linear-gradient(#e66465, #9198e5);
+    /* background: linear-gradient(#e66465, #9198e5); */
 }
 
 .admin_box2{
@@ -22,7 +22,7 @@ label{
 }
 
 .admin_ordersList{
-    background-color: rgba(12, 182, 154, 0.671);
+    background-color: #F1FFE4;
     border-radius: 10px;
     list-style-type: none;
 	padding: 32px;
@@ -33,6 +33,7 @@ label{
     margin-right: auto;
     border-style: solid;
     border-width: 2px;
+    border-radius: 80px;
 }
 
 .admin_orderItem{
@@ -40,9 +41,12 @@ label{
 }
 
 .admin_element:nth-child(1){
-    background-color: #378b8b;
+    background-color: #2FCAB7;
     flex-basis: 40%;
     text-align: center;
+    border-radius: 80px;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .admin_deleteOrders{
@@ -53,11 +57,18 @@ label{
 }
 
 .admin_element2{
-    background-color:#378b8b;
+    background-color:#2FCAB7;
     border-radius: 10px;
     margin-top: 3%;
     border-style: solid;
     border-width: 2px;
+    border-radius: 80px;
+    width: 370px;
+    text-align: center;
+}
+
+.admin_element2:nth-child(3){
+    margin-bottom: 5%;
 }
 
 input{
@@ -71,9 +82,9 @@ select{
     margin-bottom: 2%;
 }
 
-h2{
+/* h3{
     margin-left: 5%;
-}
+} */
 
 .admin_role{
     width: 60%;
@@ -89,11 +100,42 @@ h2{
     margin-bottom: 2%;
 }
 
-.admin_assignSelect{
+/* .admin_assignSelect{
     margin-left: 27%;
+} */
+
+/* .admin_assignedClient{
+    margin-left: 30%;
+} */
+
+.admin_new_message{
+    color: orange;
 }
 
-.admin_assignedClient{
-    margin-left: 30%;
+.admin_undone_order{
+    /* border-width: 1px;
+    border-style:solid;
+    border-color: red; */
+    color: red;
 }
+
+.admin_messageList{
+    background-color:#2FCAB7;
+    border-radius: 10px;
+    margin-top: 3%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 80px;
+    width: 370px;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.admin_message{
+    list-style-type: "\2709";
+    background-color: #FFFFFF;
+    width: 90%;
+    border-radius: 40px;
+}
+
 

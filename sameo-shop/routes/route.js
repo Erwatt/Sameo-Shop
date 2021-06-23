@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer, createRoom, assignClient, getAssignedClient, announceOrder, sendMessage, getMessages} = require('../controllers/controller');
+const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer, createRoom, assignClient, getAssignedClient, announceOrder, sendMessage, getMessages, setAsReaded, deleteMessage, setOrderAsDone} = require('../controllers/controller');
 const {signup, login} = require('../controllers/userController');
 
 
@@ -19,5 +19,8 @@ router.get('/GetAssignedClient', getAssignedClient);
 router.post('/AnnounceOrder', announceOrder);
 router.post('/SendMessage', sendMessage);
 router.get('/GetMsg', getMessages);
+router.put('/Readed', setAsReaded);
+router.delete('/DeleteMessage', deleteMessage);
+router.put('/OrderDone', setOrderAsDone);
 
 module.exports = router;

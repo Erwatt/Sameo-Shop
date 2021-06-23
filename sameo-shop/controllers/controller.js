@@ -13,7 +13,8 @@ exports.takeOrder = (req, res) => {
             name: name,
             price: price,
             amount: amount,
-            customer: customer
+            customer: customer,
+            done: false
         });
 
         order.save()
@@ -137,7 +138,8 @@ exports.sendMessage = (req, res) => {
     const msg = new Message({
         customer: customer,
         object: object,
-        message: message
+        message: message,
+        is_New: true
     });
     const transporter = Nodemailer.createTransport({
         service: 'gmail',
@@ -159,5 +161,28 @@ exports.sendMessage = (req, res) => {
 
     msg.save()
         .then(() => res.status(201).json({message: 'Message créé et envoyé'}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.setAsReaded = (req, res) => {
+    const id = req.body.id;
+    // console.log(id)
+
+    Message.updateOne({ _id: id }, { ...req.body, is_New: false})
+        .then(() => res.status(200).json({message: "Message marqué comme lu"}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.deleteMessage = (req, res) => {
+    const id = req.body.id;
+    Message.deleteOne({ _id: id})
+        .then(() => res.status(200).json({message: "Message supprimé"}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.setOrderAsDone = (req, res) => {
+    const id = req.body.id;
+    Order.updateOne({ _id: id}, {...req.body, done: true})
+        .then(() => res.status(200).json({message: "Commande executé"}))
         .catch(error => res.status(400).json({error}));
 };

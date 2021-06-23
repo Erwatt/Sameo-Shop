@@ -2,6 +2,7 @@ import '../CSS/Cart.scss';
 import {useState, useEffect} from 'react';
 import React from 'react';
 import services from '../services.js';
+import notif from '../Audio/notif.wav';
 
 
 
@@ -13,6 +14,10 @@ function Cart({ cart, updateCart, assignedClient }){
         const [selectedCustomer, setSelectedCustomer] = useState('');
         const [object, setObject] = useState('');
         const [message, setMessage] = useState('');
+        const notifAudio = new Audio(notif);
+        const playSound = audioFile => {
+            audioFile.play();
+        };
         const total = cart.reduce(
             (acc, itemType) => acc + itemType.amount * itemType.price,
             0
@@ -25,6 +30,7 @@ function Cart({ cart, updateCart, assignedClient }){
             });
 
         services.announceOrder(cart, selectedCustomer);
+        services.sendMessage(selectedCustomer, "Nouvelle Commande", "Nouvelle commande de " + selectedCustomer);
         
     };
 
@@ -77,6 +83,7 @@ function Cart({ cart, updateCart, assignedClient }){
                 <textarea onChange={(e) => setMessage(e.target.value)} placeholder="Message"/>
                 <button>Envoyer</button>
             </form>
+            <button onClick={() => playSound(notifAudio)}>Prout</button>
         </div>
     ) : (
         <div className="cart-closed">
