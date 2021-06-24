@@ -16,7 +16,7 @@ function App() {
   React.useEffect(() => {
     document.title = 'Saméo-Shop 😎';
   })
-
+  
   const [cart, updateCart] = useState([]);
   // const [data, setData] = useState(null);
   const [assignedClient, setAssignedClient] = useState(null);

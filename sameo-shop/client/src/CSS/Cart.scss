@@ -95,10 +95,10 @@
 	margin-right: auto;
 	height: 30px;
 	width: 50%;
-	opacity: 0%;
+	// opacity: 0%;
     transition: 400ms;
     &:hover{
-		opacity: 100%;
+		// opacity: 100%;
 		background: linear-gradient(to left, purple, indigo, blue, green, yellow, orange, red);
 		color: white;
 		border-color: white;
