@@ -54,6 +54,19 @@ label{
     text-align: center;
     margin:auto;
     margin-top: 1%;
+    background-color: #FFFFFF;
+    border-color: #000000;
+    color:#000000;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    transition: 400ms;
+    &:hover{
+        background-color: #22a7be;
+        color: #FFFFFF;
+        border-color:#FFFFFF;
+        transform:scale(1.2);
+    }
 }
 
 .admin_element2{
@@ -98,6 +111,19 @@ select{
     margin-right: auto;
     margin-top: 2%;
     margin-bottom: 2%;
+    background-color: #FFFFFF;
+    border-color: #000000;
+    color:#000000;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    transition: 400ms;
+    &:hover{
+        background-color: #22a7be;
+        color: #FFFFFF;
+        border-color:#FFFFFF;
+        transform:scale(1.2);
+    }
 }
 
 /* .admin_assignSelect{
@@ -136,6 +162,27 @@ select{
     background-color: #FFFFFF;
     width: 90%;
     border-radius: 40px;
+}
+
+.admin-done{
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #FFFFFF;
+    border-color: #000000;
+    color:#000000;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    transition: 400ms;
+    &:hover{
+        background-color: #22a7be;
+        color: #FFFFFF;
+        border-color:#FFFFFF;
+        transform:scale(1.2);
+    }
 }
 
 

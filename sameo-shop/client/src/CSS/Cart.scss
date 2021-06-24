@@ -14,10 +14,16 @@
     border-radius: 20px;
     border-width: 1px;
     background-color: white;
-    transition: background-color 400ms;
+	height: 30px;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+    transition: 400ms;
     &:hover{
-    background-color: black;
-    color: white;
+		background-color: #000000;
+		color: white;
+		border-color: white;
+		transform: scale(1.2);
     }
 }
 
@@ -25,10 +31,17 @@
 	border-radius: 20px;
     border-width: 1px;
     background-color: white;
-    transition: background-color 400ms;
+	margin-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 30px;
+	width: 50%;
+    transition: 400ms;
     &:hover{
-    background-color: black;
-    color: white;
+		background-color: #000000;
+		color: white;
+		border-color: white;
+		transform: scale(1.2);
     }
 }
 
@@ -53,4 +66,42 @@
 
 .cart-closed > button {
 	color: black;
+}
+
+.cart_send{
+	border-radius: 20px;
+    border-width: 1px;
+    background-color: white;
+	margin-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 30px;
+	width: 50%;
+    transition: 400ms;
+    &:hover{
+		background-color: #000000;
+		color: white;
+		border-color: white;
+		transform: scale(1.2);
+    }
+}
+
+.cart_prout{
+	border-radius: 20px;
+    border-width: 1px;
+    background-color: white;
+	margin-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 30px;
+	width: 50%;
+	opacity: 0%;
+    transition: 400ms;
+    &:hover{
+		opacity: 100%;
+		background: linear-gradient(to left, purple, indigo, blue, green, yellow, orange, red);
+		color: white;
+		border-color: white;
+		transform: scale(1.2);
+    }
 }

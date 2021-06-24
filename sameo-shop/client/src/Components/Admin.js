@@ -1,6 +1,6 @@
 import Services from '../services';
 import React, {useState, useEffect} from 'react';
-import '../CSS/Admin.css';
+import '../CSS/Admin.scss';
 // import notif from '../Audio/notif.wav';
 // import {useHistory} from 'react-router-dom';
 
@@ -130,7 +130,7 @@ function Admin({assignedClient, setAssignedClient}){
                                             <p>Prix: {price}€</p>
                                             <p>Quantité: {amount}</p>
                                             <form onSubmit={() => handleDone(_id)}>
-                                                <button>Done</button>
+                                                <button className="admin-done">Done</button>
                                             </form>
                                         </li>
                                     )

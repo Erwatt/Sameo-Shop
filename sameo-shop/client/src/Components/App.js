@@ -34,7 +34,6 @@ function App() {
     <div className="App">
       {/* <p className="momo">{!data ? "Loading" : data}</p> */}
       <Header/>
-      <div className='body'>
       <Switch>
         <Route exact path="/" component={Home}/>
         <ProtectedRoute exact path="/Salle1" component={() => <div className="shop">
@@ -46,8 +45,6 @@ function App() {
         <ProtectedRoute exact path="/Admin" component={() => <Admin assignedClient={assignedClient} setAssignedClient={setAssignedClient}/>} role={["Admin"]}/>
         <Route exact path="/SignIn" component={Login}/>
       </Switch>
-      </div>
-      
     </div>
   );
 }

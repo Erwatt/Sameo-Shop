@@ -20,6 +20,19 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    opacity: 80%;
+    transition: 400ms;
+    &:hover{
+        background-color: #000000;
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+        opacity: 100%;
+        transform:scale(1.2);
+    }
 }
 
 .login_h1{

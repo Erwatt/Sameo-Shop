@@ -17,6 +17,7 @@ function Cart({ cart, updateCart, assignedClient }){
         const notifAudio = new Audio(notif);
         const playSound = audioFile => {
             audioFile.play();
+            alert("Le boeuf c'est du porc")
         };
         const total = cart.reduce(
             (acc, itemType) => acc + itemType.amount * itemType.price,
@@ -81,9 +82,9 @@ function Cart({ cart, updateCart, assignedClient }){
                 <input onChange={(e) => setObject(e.target.value)} placeholder="Objet"/>
                 <label>Message</label>
                 <textarea onChange={(e) => setMessage(e.target.value)} placeholder="Message"/>
-                <button>Envoyer</button>
+                <button className="cart_send">Envoyer</button>
             </form>
-            <button onClick={() => playSound(notifAudio)}>Prout</button>
+            <button className="cart_prout" onClick={() => playSound(notifAudio)}>Prout</button>
         </div>
     ) : (
         <div className="cart-closed">
