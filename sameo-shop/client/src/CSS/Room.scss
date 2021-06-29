@@ -1,0 +1,103 @@
+.shop{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+  }
+  
+  .list{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .room-locked{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-top: 5%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      // background-color: red;
+      border-radius: 80px;
+      border-style: solid;
+      border-width: 2px;
+      width: 60%;
+      height: 15em;
+      animation: colorChange 2s alternate infinite;
+  }
+
+  .room-locked-txt{
+    font-family: 'Comic sans ms';
+    font-size: 1.3em;
+    margin-top: 4%;
+      // color: white;
+  }
+
+  .room-locked-img{
+      width: auto;
+      height: 30%;
+      margin-top: auto;
+      margin-bottom: auto; 
+      margin-left: 2%;
+      margin-right: 2%;
+  }
+
+  .rotation1{
+    animation: rotating1 2s linear infinite; 
+  }
+
+  .rotation2{
+    animation: rotating2 2s linear infinite;
+  }
+
+  .room-locked-info{
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .room-locked-hand{
+    font-size: 1.3em;
+    animation: wavyHand 1s alternate infinite;
+  }
+
+  @keyframes rotating1 {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating2 {
+  from{
+      -webkit-transform: rotate(0deg);
+  }
+  to{
+      -webkit-transform: rotate(-360deg);
+  }
+}
+
+@keyframes colorChange{
+  from{
+    background-color: white;
+    color:red;
+    transform: scale(1);
+  }
+  to{
+    background-color: red;
+    color:white;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes wavyHand{
+  from{
+    transform: scale(1.5);
+    transform: rotate(-20deg);
+  }
+  to{
+    transform: scale(1.5);
+    transform: rotate(30deg);
+  }
+}

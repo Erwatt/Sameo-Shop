@@ -8,16 +8,15 @@ import notif from '../Audio/notif.wav';
 
 
 
-function Cart({ cart, updateCart, assignedClient }){
+function Cart({ cart, updateCart }){
         const [isOpen, setIsOpen] = useState(true);
         // const [customersList, setCustomersList] = useState([]);
         const [selectedCustomer, setSelectedCustomer] = useState('');
-        const [object, setObject] = useState('');
         const [message, setMessage] = useState('');
         const notifAudio = new Audio(notif);
         const playSound = audioFile => {
             audioFile.play();
-            alert("Le boeuf c'est du porc")
+            alert(`"Le boeuf c'est du porc ?" : Morgane le 01/06/2021 à 11h27`)
         };
         const total = cart.reduce(
             (acc, itemType) => acc + itemType.amount * itemType.price,
@@ -31,12 +30,12 @@ function Cart({ cart, updateCart, assignedClient }){
             });
 
         services.announceOrder(cart, selectedCustomer);
-        services.sendMessage(selectedCustomer, "Nouvelle Commande", "Nouvelle commande de " + selectedCustomer);
+        services.sendMessage(selectedCustomer, "Nouvelle commande de " + selectedCustomer);
         
     };
 
     function handleMessage(){
-        services.sendMessage(selectedCustomer, object, message)
+        services.sendMessage(selectedCustomer, message)
             .then((res) => res.json({message: "Message envoyé"}));
     };
 
@@ -57,7 +56,6 @@ function Cart({ cart, updateCart, assignedClient }){
         <div className="cart-open">
             <button className="cart-button" onClick={() => setIsOpen(false)}>Fermer</button>
             <h2>Panier</h2>
-            <h1>{assignedClient}</h1>
             {cart.map(({ name, price, amount }, index) => (
                 <div key={`${name}-${index}`}>
                     {name} {price}€ x {amount}
@@ -78,13 +76,14 @@ function Cart({ cart, updateCart, assignedClient }){
             <button className="cart_empty" onClick={() => updateCart([])}>Vider le panier</button>
             <h2>Envoyer un message</h2>
             <form onSubmit={() => handleMessage()}>
-                <label>Objet</label>
-                <input onChange={(e) => setObject(e.target.value)} placeholder="Objet"/>
                 <label>Message</label>
                 <textarea onChange={(e) => setMessage(e.target.value)} placeholder="Message"/>
                 <button className="cart_send">Envoyer</button>
             </form>
-            <button className="cart_prout" onClick={() => playSound(notifAudio)}>Prout</button>
+            { total === 2021 ? (
+                <button className="cart_prout" onClick={() => playSound(notifAudio)}>Prout</button>
+            ):null}
+            
         </div>
     ) : (
         <div className="cart-closed">

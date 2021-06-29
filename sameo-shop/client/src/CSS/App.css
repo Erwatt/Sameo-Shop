@@ -5,16 +5,6 @@ body{
   background-repeat: no-repeat;
 }
 
-.shop{
-  display: flex;
-  flex-direction: row;
-  justify-content:left;
-}
-
-.list{
-  margin-left: 10%;
-}
-
 .momo{
   border-color: blueviolet;
   border-style: solid;

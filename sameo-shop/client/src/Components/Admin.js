@@ -17,7 +17,13 @@ function Admin({assignedClient, setAssignedClient}){
     const [userPassword, setUserPassword] = useState(null);
     const [userRole, setUserRole] = useState(null);
     const [messageList, setMessageList] = useState([]);
+    const [isRoom1Locked, setIsRoom1Locked]  = useState(false);
 
+
+    useEffect(() => {
+        Services.isLocked("room")
+            .then(res => setIsRoom1Locked(res.data.isLocked));
+    }, []);
     
     
     useEffect(() => {
@@ -95,9 +101,13 @@ function Admin({assignedClient, setAssignedClient}){
         Services.setOrderAsDone(id);
     };
 
-    useEffect(() => {
+    function handleLock(room){
+        Services.lockRoom(room);
+    };
 
-    }, [])
+    function handleDelock(room){
+        Services.delockRoom(room);
+    };
 
 
 
@@ -105,7 +115,7 @@ function Admin({assignedClient, setAssignedClient}){
         <div className="admin_box">
             <div className="admin_element admin_orders">
                 <select name="customersList"  onChange={(e) => setSelectedCustomer(e.target.value)}>
-                    <option selected>Choisissez un client</option>
+                    <option>Choisissez un client</option>
                     {customersList.map(({name, firstname}) => (
                         <option value={name} key={name}>{name} {firstname}</option>
                     ))}
@@ -175,19 +185,28 @@ function Admin({assignedClient, setAssignedClient}){
                     <div className="customerAssignment admin_element2">
                         <h2>Assignation aux salles</h2>
                         <h3>Salle 1</h3>
+                        {isRoom1Locked ? (
+                            <form onSubmit={() => handleDelock("room")}>
+                                <button className="admin_button">Dévérouiller la salle</button>
+                            </form>
+                        ):(
+                            <form onSubmit={() => handleLock("room")}>
+                                <button className="admin_button">Vérouiller la salle</button>
+                            </form>
+                        )}
                         {assignedClient !== null ? (
                             <p className="admin_assignedClient">Client actuel: {assignedClient}</p>
                         ):(
                             <p className="admin_assignedClient">Aucun client actuellement assigné</p>
                         )}
                         <select className="admin_assignSelect" name="customersList" onChange={(e) => setSelectedClientForRoom(e.target.value)}>
-                            <option selected>Choisissez un client</option>
+                            <option>Choisissez un client</option>
                             {customersList.map(({name, firstname}) => (
                                 <option value={name} key={name}>{name} {firstname}</option>
                             ))}
                         </select>
                         <form onSubmit={() => handleAssignment()}>
-                            <button  className="admin_button" /*onClick={() => setAssignedClient(selectedClientForRoom)}*/>Assigner à la salle</button>
+                            <button className="admin_button" /*onClick={() => setAssignedClient(selectedClientForRoom)}*/>Assigner à la salle</button>
                         </form>
                     </div>
                     <div className="CreateCustomer admin_element2">
@@ -210,7 +229,7 @@ function Admin({assignedClient, setAssignedClient}){
                             <input onChange={(e) => setUserPassword(e.target.value)} placeholder="Mot de passe"/>
                             <label>Rôle</label>
                             <select className="admin_role" onChange={(e) => setUserRole(e.target.value)}>
-                                <option selected>Choisissez un rôle</option>
+                                <option>Choisissez un rôle</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Salle1">Salle 1</option>
                             </select>

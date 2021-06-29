@@ -72,9 +72,9 @@ class services {
         return JSON.parse(localStorage.getItem('user'));;
     };
 
-    sendMessage(customer, object, message){
+    sendMessage(customer, message){
         return axios
-            .post(API_URL + 'SendMessage', {customer, object, message});
+            .post(API_URL + 'SendMessage', {customer, message});
     };
 
     getMessages(){
@@ -101,6 +101,20 @@ class services {
         localStorage.removeItem('user');
     };
     
+    isLocked(room){
+        return axios
+            .get(API_URL + 'IsLocked', {params: {room: room}});
+    };
+
+    lockRoom(room){
+        return axios
+            .put(API_URL + 'LockRoom', {room});
+    };
+
+    delockRoom(room){
+        return axios
+            .put(API_URL + 'DelockRoom', {room});
+    };
 };
 
 export default new services();

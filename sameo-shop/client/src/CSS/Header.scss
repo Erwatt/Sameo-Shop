@@ -5,14 +5,29 @@
     border-bottom: solid 3px black;
     /* background-color:rgba(12, 182, 154, 0.671); */
     background-color: #2FCAB7;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .header_img{
-    width:2%;
+    margin-top: 2%;
+    width:6%;
     height: auto;
     transition: ease-in-out 600ms;
     &:hover{
         transform: scale(2) rotate(360deg);
         // transform: rotate(360deg);
     }
+}
+
+.header_logo{
+    margin-left: 40%;
+    width: 20%;
+    height:auto;
+}
+
+.header-right{
+    margin-top: auto;
+    margin-bottom: auto;
 }

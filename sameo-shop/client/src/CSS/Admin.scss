@@ -32,7 +32,7 @@ label{
     margin-left: auto;
     margin-right: auto;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 80px;
 }
 
@@ -41,12 +41,14 @@ label{
 }
 
 .admin_element:nth-child(1){
-    background-color: #2FCAB7;
+    background-color: #2FCAB1;
     flex-basis: 40%;
     text-align: center;
     border-radius: 80px;
     margin-top: 5%;
     margin-bottom: 5%;
+    border-style: solid;
+    border-width: 2px;
 }
 
 .admin_deleteOrders{
@@ -61,6 +63,7 @@ label{
     border-style: solid;
     border-width: 1px;
     transition: 400ms;
+    cursor: pointer;
     &:hover{
         background-color: #22a7be;
         color: #FFFFFF;
@@ -118,6 +121,7 @@ select{
     border-style: solid;
     border-width: 1px;
     transition: 400ms;
+    cursor: pointer;
     &:hover{
         background-color: #22a7be;
         color: #FFFFFF;
@@ -177,6 +181,7 @@ select{
     border-style: solid;
     border-width: 1px;
     transition: 400ms;
+    cursor: pointer;
     &:hover{
         background-color: #22a7be;
         color: #FFFFFF;
@@ -184,5 +189,4 @@ select{
         transform:scale(1.2);
     }
 }
-
 

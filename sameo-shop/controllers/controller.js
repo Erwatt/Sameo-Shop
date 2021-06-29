@@ -117,10 +117,32 @@ exports.createRoom = (req, res) => {
     let {name, client} = req.body;
     const room = new Room({
         name: name,
-        client: client
+        client: client,
+        isLocked: false
     });
     room.save()
         .then(() => res.status(201).json({message:'Salle crée'}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.isLocked = (req, res) => {
+    const room = req.query.room;
+    Room.findOne({name: room})
+        .then(room => res.status(200).json(room))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.lockRoom = (req, res) => {
+    let room = req.body.room;
+    Room.updateOne({name: room}, {isLocked: true, name: room})
+        .then(() => res.status(200).json({message:'Salle vérouilléé'}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.delockRoom = (req, res) => {
+    let room = req.body.room;
+    Room.updateOne({name: room}, {isLocked: false, name: room})
+        .then(() => res.status(200).json({message:'Salle dévérouilléé'}))
         .catch(error => res.status(400).json({error}));
 };
 
@@ -134,10 +156,10 @@ exports.assignClient = (req, res) => {
 
 exports.sendMessage = (req, res) => {
     // console.log('coucou')
-    let {customer, object, message} = req.body;
+    let {customer, message} = req.body;
     const msg = new Message({
         customer: customer,
-        object: object,
+        object: "Nouveau message de" + customer,
         message: message,
         is_New: true
     });
@@ -153,8 +175,8 @@ exports.sendMessage = (req, res) => {
     const mailOptions = {
         from: process.env.SENDER,
         to: process.env.RECEIVER,
-        subject: object,
-        html: `Nouveau message de ${customer}: ${message}`
+        subject: `Nouveau message de ${customer}`,
+        html: `${message}`
     };
 
     transporter.sendMail(mailOptions);

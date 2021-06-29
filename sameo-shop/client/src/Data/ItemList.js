@@ -14,63 +14,63 @@ export const ItemList = [
     {
         id: 'abc',
         name: 'Coca',
-        category: 'boisson',
+        category: 'Boisson',
         price: 3.5,
         cover: coca
     },
     {
         id: 'def',
         name: 'Fanta',
-        category: 'boisson',
+        category: 'Boisson',
         price: 4,
         cover: fanta
     },
     {
         id: 'ghi',
         name: 'Sprite',
-        category: 'boisson',
+        category: 'Boisson',
         price: 2,
         cover: sprite
     },
     {
         id: 'jkl',
         name: 'Champagne',
-        category: 'boisson',
+        category: 'Boisson',
         price: 10,
         cover: champagne
     },
     {
         id: 'mno',
         name: 'Chips',
-        category: 'snack',
+        category: 'Snack',
         price: 1.5,
         cover: chips
     },
     {
         id: 'pqr',
         name: 'Hot dog',
-        category: 'snack',
+        category: 'Snack',
         price: 2.5,
         cover: hotDog
     },
     {
         id: 'stu',
         name: 'Serviette',
-        category: 'autres',
+        category: 'Autres',
         price: 5,
         cover: serviette
     },
     {
         id: 'vwx',
         name: 'Savon',
-        category: 'autres',
+        category: 'Autres',
         price: 3,
         cover: savon
     },
     {
         id: 'yza',
         name: 'Papier toilette',
-        category: 'autres',
+        category: 'Autres',
         price: 0.5,
         cover: pq
     },
