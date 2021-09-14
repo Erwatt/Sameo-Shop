@@ -10,6 +10,9 @@ import Home from './Home';
 import ProtectedRoute from './ProtectedRoute';
 import { Route, Switch} from 'react-router-dom';
 import Room from './Room';
+import CustomerHome from './CustomerHome';
+import CustomerMessage from './CustomerMessage';
+import AdminMessage from './AdminMessage';
 
 
 function App() {
@@ -19,6 +22,7 @@ function App() {
   })
   
   const [cart, updateCart] = useState([]);
+  const [selectValue, setSelectValue] = useState('all');
   // const [data, setData] = useState(null);
   const [assignedClient, setAssignedClient] = useState(null);
   
@@ -37,8 +41,11 @@ function App() {
       <Header/>
       <Switch>
         <Route exact path="/" component={Home}/>
-        <ProtectedRoute exact path="/Salle1" component={() => <Room room="room" cart={cart} updateCart={updateCart}/>} role={["Salle1", "Admin"]}/>
+        <ProtectedRoute exact path="/Salle1" component={() => <CustomerHome room="room"/>} role={["Salle1", "Admin"]}/>
+        <ProtectedRoute exact path="/Salle1/Shop" component={() => <Room room="room" cart={cart} updateCart={updateCart} selectValue={selectValue} setSelectValue={setSelectValue}/>} role={["Salle1", "Admin"]}/>
+        <ProtectedRoute exact path="/Salle1/Message" component={CustomerMessage} role={["Salle1", "Admin"]}/>
         <ProtectedRoute exact path="/Admin" component={() => <Admin assignedClient={assignedClient} setAssignedClient={setAssignedClient}/>} role={["Admin"]}/>
+        <ProtectedRoute exact path="/Admin/Message" component={AdminMessage} role={["Admin"]}/>
         <Route exact path="/SignIn" component={Login}/>
       </Switch>
     </div>

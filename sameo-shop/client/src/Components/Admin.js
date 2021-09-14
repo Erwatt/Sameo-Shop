@@ -1,5 +1,6 @@
 import Services from '../services';
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import '../CSS/Admin.scss';
 // import notif from '../Audio/notif.wav';
 // import {useHistory} from 'react-router-dom';
@@ -99,6 +100,12 @@ function Admin({assignedClient, setAssignedClient}){
 
     function handleDone(id){
         Services.setOrderAsDone(id);
+        Services.newAdminMessage("Votre commande est prête à être récupérée aux vestiaires", selectedCustomer, true);
+    };
+
+    function handlePrep(id){
+        Services.setOrderAsInPrep(id);
+        Services.newAdminMessage("Votre commande à bien été prise en compte et est en cours de préparation", selectedCustomer, true);
     };
 
     function handleLock(room){
@@ -126,25 +133,35 @@ function Admin({assignedClient, setAssignedClient}){
                             <button className="admin_deleteOrders">Supprimer la commande</button>
                         </form>
                         <ul className="admin_ordersList">
-                            {ordersList.map(({_id, name, price, amount,customer, done}, index) => (
+                            {ordersList.map(({_id, name, price, amount,customer,isReceived , done}, index) => (
                                 customer === selectedCustomer ?(
-                                    done ? (
-                                        <li key={index} className="admin_orderItem">
-                                            <h2>{name}</h2>
-                                            <p>Prix: {price}€</p>
-                                            <p>Quantité: {amount}</p>
-                                        </li>
+                                    isReceived ? (
+                                        done ? (
+                                            <li key={index} className="admin_orderItem">
+                                                <h2>{name}</h2>
+                                                <p>Prix: {price}€</p>
+                                                <p>Quantité: {amount}</p>
+                                            </li>
+                                        ):(
+                                            <li key={index} className="admin_orderItem admin_inPrep_order">
+                                                <h2>{name}</h2>
+                                                <p>Prix: {price}€</p>
+                                                <p>Quantité: {amount}</p>
+                                                <form onSubmit={() => handleDone(_id)}>
+                                                    <button className="admin-done">Done</button>
+                                                </form>
+                                            </li>
+                                        )
                                     ):(
                                         <li key={index} className="admin_orderItem admin_undone_order">
-                                            <h2>{name}</h2>
-                                            <p>Prix: {price}€</p>
-                                            <p>Quantité: {amount}</p>
-                                            <form onSubmit={() => handleDone(_id)}>
-                                                <button className="admin-done">Done</button>
-                                            </form>
-                                        </li>
-                                    )
-                                
+                                                <h2>{name}</h2>
+                                                <p>Prix: {price}€</p>
+                                                <p>Quantité: {amount}</p>
+                                                <form onSubmit={() => handlePrep(_id)}>
+                                                    <button className="admin-done">En préparation</button>
+                                                </form>
+                                            </li>
+                                    )                                
                                 ) : null
                             ))}
                         </ul>
@@ -153,6 +170,7 @@ function Admin({assignedClient, setAssignedClient}){
             </div>
             {messageList !== null ? (
                 <div className="admin_element admin_messageList">
+                    <Link to="/Admin/Message" className="admin_link"><button className="admin_button">Message</button></Link>
                 <ul>
                     {messageList.map(({_id, customer, object, message, is_New}) => (
                         is_New ? (
@@ -187,11 +205,11 @@ function Admin({assignedClient, setAssignedClient}){
                         <h3>Salle 1</h3>
                         {isRoom1Locked ? (
                             <form onSubmit={() => handleDelock("room")}>
-                                <button className="admin_button">Dévérouiller la salle</button>
+                                <button className="admin_button">Déverrouiller la salle</button>
                             </form>
                         ):(
                             <form onSubmit={() => handleLock("room")}>
-                                <button className="admin_button">Vérouiller la salle</button>
+                                <button className="admin_button">Verrouiller la salle</button>
                             </form>
                         )}
                         {assignedClient !== null ? (

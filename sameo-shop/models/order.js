@@ -5,6 +5,7 @@ const orderSchema = mongoose.Schema({
     price: { type: Number, required: true},
     amount: { type: Number, required: true},
     customer: {type: String, required: true},
+    isReceived: {type: Boolean, required: true},
     done: {type: Boolean, required: true}
 });
 

@@ -19,9 +19,16 @@
 	font-size: 150%;
 	/* color: aqua; */
 	font-family: 'Bell-Melt';
-	font-weight:normal
+	font-weight:normal;
+	margin-bottom: 0;
 }
 
 .Item_Price{
+	margin-top: 0;
 	font-family: 'Bell-Melt';
+}
+
+.alcoholFree{
+	width:3%;
+	height:auto;
 }

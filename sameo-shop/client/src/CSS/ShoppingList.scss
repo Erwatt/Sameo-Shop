@@ -1,0 +1,72 @@
+.items-list{
+    list-style-type: none;
+	padding: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 800px;
+	background-color: rgba(12, 182, 154, 0.671);
+	border-radius: 10px;
+}
+
+.shoppingList_retour{
+	transform: rotate(180deg);
+	width: 8%;
+	height: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.shoppingList_retour_select{
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+}
+
+.shoppingList_retour_select > select{
+	margin-left: 0%;
+	padding-left: 0%;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.shoppingList_retours{
+	display: flex;
+	flex-direction: row;
+	width: 40%;
+	margin-left: 5%;
+	text-decoration: none;
+	color:black;
+}
+
+.shoppingList_retour_txt{
+	margin-top: auto;
+	margin-bottom: auto;
+	/* width: 10px; */
+	font-weight: normal;
+}
+
+.shoppingList_cat{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.shoppingList_cat_button{
+	text-decoration: none;
+    color: black;
+    background-color: white;
+    border: solid black 1px;
+    border-radius: 80px;
+    font-weight: normal;
+    transition: 400ms;
+    margin: 5%;
+	width: 30%;
+	padding: 5%;
+    &:hover{
+        transform: scale(1.1);
+        color: white;
+        border: solid white 2px;
+        background-color: black;
+        box-shadow: blanchedalmond 10px 10px;
+    }
+}

@@ -3,6 +3,7 @@ const Customer = require('../models/customer');
 const Room = require('../models/room');
 const Message = require('../models/message');
 const Nodemailer = require('nodemailer');
+const AdminMessage = require('../models/adminMessage');
 
 exports.takeOrder = (req, res) => {
     let {cart, customer} = req.body;
@@ -14,6 +15,7 @@ exports.takeOrder = (req, res) => {
             price: price,
             amount: amount,
             customer: customer,
+            isReceived: false,
             done: false
         });
 
@@ -42,8 +44,8 @@ exports.announceOrder = (req, res) => {
         txt += (name + " x " + amount + "                      ")
     })
     const transporter = Nodemailer.createTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
+        service: 'ionos',
+        host: 'smtp.ionos.fr',
         auth: {
           user: process.env.SENDER,
           pass: process.env.PASSWORD
@@ -70,7 +72,7 @@ exports.announceOrder = (req, res) => {
           })
           console.log('Email sent: ' + info.response);
         }
-    });         
+    });
 };
 
 exports.getAssignedClient = (req, res) => {
@@ -164,8 +166,8 @@ exports.sendMessage = (req, res) => {
         is_New: true
     });
     const transporter = Nodemailer.createTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
+        service: 'ionos',
+        host: 'smtp.ionos.fr',
         auth: {
           user: process.env.SENDER,
           pass: process.env.PASSWORD
@@ -206,5 +208,38 @@ exports.setOrderAsDone = (req, res) => {
     const id = req.body.id;
     Order.updateOne({ _id: id}, {...req.body, done: true})
         .then(() => res.status(200).json({message: "Commande executé"}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.setOrderAsInPrep = (req, res) => {
+    const id = req.body.id;
+    Order.updateOne({_id: id}, {...req.body, isReceived: true})
+        .then(() => res.status(200).json({message: "Commande en préparation"}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.newAdminMessage = (req, res) => {
+    let {message, customer, isPopUp} = req.body;
+    const admMsg = new AdminMessage({
+        message: message,
+        customer: customer,
+        isPopUp: isPopUp
+    });
+    admMsg.save()
+        .then(() => res.status(201).json({message: "Message sauvegardé"}))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.getAdminMessage = (req, res) => {
+    AdminMessage.find()
+        .then(admMessage => res.status(200).json(admMessage))
+        .catch(error => res.status(400).json({error}));
+};
+
+exports.deleteAdminMessage = (req, res) => {
+    const id = req.body.id;
+    // console.log(id);
+    AdminMessage.deleteOne({ _id: id})
+        .then(() => res.status(200).json({message: 'Message supprimé'}))
         .catch(error => res.status(400).json({error}));
 };

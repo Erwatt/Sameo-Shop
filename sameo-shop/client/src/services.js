@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-const API_URL = "https://sameo-shop.herokuapp.com/api/";
-// const API_URL = 'http://localhost:3001/api/';
+// const API_URL = "https://sameo-shop.herokuapp.com/api/";
+const API_URL = 'http://localhost:3001/api/';
 
 class services {
     
@@ -92,6 +92,11 @@ class services {
             .delete(API_URL + 'DeleteMessage', {data: {id}});
     };
 
+    setOrderAsInPrep(id){
+        return axios
+            .put(API_URL + 'OrderInPrep', {id});
+    };
+
     setOrderAsDone(id){
         return axios
             .put(API_URL + 'OrderDone', {id});
@@ -114,6 +119,22 @@ class services {
     delockRoom(room){
         return axios
             .put(API_URL + 'DelockRoom', {room});
+    };
+
+    newAdminMessage(message, customer, isPopUp){
+        return axios
+            .post(API_URL + 'AdminMessage', {message, customer, isPopUp});
+    };
+
+    getAdminMessage(customer){
+        return axios
+            .get(API_URL + 'GetAdminMessage', {params: {customer: customer}});
+    };
+
+    deleteAdminMessage(id){
+        console.log(id)
+        return axios
+            .delete(API_URL + 'DeleteAdminMessage', {data: {id}});
     };
 };
 
