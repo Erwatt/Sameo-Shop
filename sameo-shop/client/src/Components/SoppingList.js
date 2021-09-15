@@ -1,7 +1,7 @@
 import {ItemList} from '../Data/ItemList';
 import Items from './Items';
 import '../CSS/ShoppingList.scss';
-import React, {useState} from 'react';
+import React from 'react';
 import arrow from '../Images/arrow.png';
 import {Link} from 'react-router-dom';
 

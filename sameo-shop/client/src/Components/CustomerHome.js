@@ -10,7 +10,6 @@ function CustomerHome({room}){
     const [selectedCustomer, setSelectedCustomer] = useState('');
     const [isLocked, setIsLocked] = useState(false);
     const [adminMessages, setAdminMessages] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         services.getAssignedClient("room")
