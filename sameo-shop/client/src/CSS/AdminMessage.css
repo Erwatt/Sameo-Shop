@@ -1,0 +1,33 @@
+.adminMessage{
+    width: 50%;
+    margin: auto;
+    margin-top: 2%;
+    background-color: rgba(12, 182, 154);
+    padding: 3%;
+    border: black solid 2px;
+    border-radius: 10px;
+}
+
+.adminMessage_customersList{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+.adminMessage_message{
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+.adminMessage_button{
+    width:25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+}
