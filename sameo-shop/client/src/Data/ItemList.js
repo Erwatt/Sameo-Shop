@@ -206,5 +206,12 @@ export const ItemList = [
         category: "Prestations",
         price: 70.00,
         cover: massage
+    },
+    {
+        id: '1',
+        name: "Demi champagne",
+        category: "Champagnes",
+        price: 29.00,
+        cover: champagne
     }
 ]
