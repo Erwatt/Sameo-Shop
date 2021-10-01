@@ -21,7 +21,11 @@ import jusOrange from '../Images/JusOrange.jpg';
 import the from '../Images/The.jpg';
 import massage from '../Images/Massage.jpg';
 import eau from '../Images/eau.jpg';
-
+import Maison2 from '../Images/Maison2.jpg';
+import Maison4 from '../Images/Maison4.jpg';
+import Grignot from '../Images/Grignot.jpg';
+import Grignotplus from '../Images/Grignotplus.jpg';
+import Charcutfrom from '../Images/Charcutfrom.jpg';
 
 export const ItemList = [
     {
@@ -213,5 +217,61 @@ export const ItemList = [
         category: "Champagnes",
         price: 29.00,
         cover: champagne
+    }
+    ,
+    {
+        id: 'val101',
+        name: "Grignot'",
+        category: "Pause Apéro",
+        price: 4.00,
+        cover: Grignot
+    }
+    ,
+    {
+        id: 'val102',
+        name: "Grignot' plus pour 2",
+        category: "Pause Apéro",
+        price: 9.00,
+        cover: Grignotplus
+    }
+    ,
+    {
+        id: 'val103',
+        name: "Grignot' plus pour 4",
+        category: "Pause Apéro",
+        price: 15.00,
+        cover: Grignotplus
+    }
+    ,
+    {
+        id: 'val104',
+        name: "Charcut' & Fromage pour 2",
+        category: "Pause Apéro",
+        price: 11.00,
+        cover: Charcutfrom
+    }
+    ,
+    {
+        id: 'val105',
+        name: "Charcut' & Fromage pour 4",
+        category: "Pause Apéro",
+        price: 17.00,
+        cover: Charcutfrom
+    }
+    ,
+    {
+        id: 'val106',
+        name: "Fais Maison pour 2",
+        category: "Pause Apéro",
+        price: 5,50,
+        cover: Maison2
+    }
+    ,
+    {
+        id: 'val107',
+        name: "Fais Maison pour 4",
+        category: "Pause Apéro",
+        price: 9.00,
+        cover: Maison4
     }
 ]
