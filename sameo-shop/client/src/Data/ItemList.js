@@ -23,9 +23,9 @@ import massage from '../Images/Massage.jpg';
 import eau from '../Images/eau.jpg';
 import Maison2 from '../Images/Maison2.jpg';
 import Maison4 from '../Images/Maison4.jpg';
-import Grignot from '../Images/Grignot.jpg';
-import Grignotplus from '../Images/Grignotplus.jpg';
-import Charcutfrom from '../Images/Charcutfrom.jpg';
+import Grignot from '../Images/Grignot.JPG';
+import Grignotplus from '../Images/Grignotplus.JPG';
+import Charcutfrom from '../Images/Charcutfrom.JPG';
 
 export const ItemList = [
     {
@@ -263,7 +263,7 @@ export const ItemList = [
         id: 'val106',
         name: "Fais Maison pour 2",
         category: "Pause Apéro",
-        price: 5,50,
+        price: 5.50,
         cover: Maison2
     }
     ,
