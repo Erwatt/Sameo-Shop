@@ -26,6 +26,12 @@ import Maison4 from '../Images/Maison4.jpg';
 import Grignot from '../Images/Grignot.JPG';
 import Grignotplus from '../Images/Grignotplus.JPG';
 import Charcutfrom from '../Images/Charcutfrom.JPG';
+import Sexonthebeach from '../Images/Sex on the beach.jpg';
+import Bierecuvee from '../Images/biere-cuvee-du-moment.jpg';
+import Biereambree from '../Images/biere-ambree.jpg';
+import Biereblonde from '../Images/biere-blonde.jpg';
+import whiskycoca from '../Images/Whisky Coca.jpg';
+import Aperol from '../Images/Aperol.jpg';
 
 export const ItemList = [
     {
@@ -86,7 +92,7 @@ export const ItemList = [
     },
     {
         id: 'lmn',
-        name: "Citronade Maison",
+        name: "Citronnade Maison",
         category: "Soft",
         price: 4.00,
         cover: citronade
@@ -105,13 +111,13 @@ export const ItemList = [
         price: 5.00,
         cover: biereTriple
     },
-    {
-        id: 'stu',
-        name: 'Saint-Amand Blanche',
-        category: 'Bière',
-        price: 4.50,
-        cover: biereBlanche
-    },
+    // {
+    //     id: 'stu',
+    //     name: 'Saint-Amand Blanche',
+    //     category: 'Bière',
+    //     price: 5.00,
+    //     cover: biereBlanche
+    // },
     {
         id: 'vwx',
         name: 'Café gourmand',
@@ -168,13 +174,13 @@ export const ItemList = [
         price: 3.50,
         cover: capuccino
     },
-    {
-        id: 'nop',
-        name: 'Mojito 🍸',
-        category: 'Cocktail',
-        price: 8.90,
-        cover: mojito
-    },
+    // {
+    //     id: 'nop',
+    //     name: 'Mojito 🍸',
+    //     category: 'Cocktail',
+    //     price: 8.90,
+    //     cover: mojito
+    // },
     {
         id: 'qrs',
         name: 'Maï Taï 🍸',
@@ -194,7 +200,7 @@ export const ItemList = [
         name: 'Tiny Blue',
         alcoholFree: true,
         category: 'Cocktail Sans Alcool',
-        price: 7.00,
+        price: 4.00,
         cover: coca
     },
     {
@@ -273,5 +279,53 @@ export const ItemList = [
         category: "Pause Apéro",
         price: 9.00,
         cover: Maison4
+    }
+    ,
+    {
+        id: 'val108',
+        name: "Whisky Coca 🍸",
+        category: "Cocktail",
+        price: 7.00,
+        cover: whiskycoca
+    }
+    ,
+    {
+        id: 'val109',
+        name: 'Saint-Amand Ambrée',
+        category: 'Bière',
+        price: 5.00,
+        cover: Biereambree
+    }
+    ,
+    {
+        id: 'val110',
+        name: 'Saint-Amand Blonde',
+        category: 'Bière',
+        price: 5.00,
+        cover: Biereblonde
+    }
+    ,
+    {
+        id: 'val111',
+        name: 'Saint-Amand Cuvée du Moment',
+        category: 'Bière',
+        price: 5.00,
+        cover: Bierecuvee
+    }
+    ,
+    {
+        id: 'val112',
+        name: "Sex on the Beach 🍸",
+        category: "Cocktail",
+        price: 8.90,
+        cover: Sexonthebeach
+    }
+    ,
+    {
+        id: 'val11"',
+        name: "Aperol 🍸",
+        category: "Cocktail",
+        price: 7.00,
+        cover: Aperol
     }
 ]
