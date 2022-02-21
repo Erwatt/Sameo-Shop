@@ -203,20 +203,20 @@ export const ItemList = [
         price: 4.00,
         cover: coca
     },
-    {
-        id: 'opq',
-        name: "Massage solo 30'",
-        category: "Prestations",
-        price: 35.00,
-        cover: massage
-    },
-    {
-        id: 'rst',
-        name: "Massage duo 30'",
-        category: "Prestations",
-        price: 70.00,
-        cover: massage
-    },
+    // {
+    //     id: 'opq',
+    //     name: "Massage solo 30'",
+    //     category: "Prestations",
+    //     price: 35.00,
+    //     cover: massage
+    // },
+    // {
+    //     id: 'rst',
+    //     name: "Massage duo 30'",
+    //     category: "Prestations",
+    //     price: 70.00,
+    //     cover: massage
+    // },
     {
         id: '1',
         name: "Demi champagne",
