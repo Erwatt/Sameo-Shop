@@ -111,13 +111,13 @@ export const ItemList = [
         price: 5.00,
         cover: biereTriple
     },
-    // {
-    //     id: 'stu',
-    //     name: 'Saint-Amand Blanche',
-    //     category: 'Bière',
-    //     price: 5.00,
-    //     cover: biereBlanche
-    // },
+    {
+        id: 'stu',
+        name: 'Saint-Amand Blanche',
+        category: 'Bière',
+        price: 5.00,
+        cover: biereBlanche
+    },
     {
         id: 'vwx',
         name: 'Café gourmand',
@@ -304,14 +304,14 @@ export const ItemList = [
         price: 5.00,
         cover: Biereblonde
     }
-    ,
-    {
-        id: 'val111',
-        name: 'Saint-Amand Cuvée du Moment',
-        category: 'Bière',
-        price: 5.00,
-        cover: Bierecuvee
-    }
+    // ,
+    // {
+    //     id: 'val111',
+    //     name: 'Saint-Amand Cuvée du Moment',
+    //     category: 'Bière',
+    //     price: 5.00,
+    //     cover: Bierecuvee
+    // }
     ,
     {
         id: 'val112',
