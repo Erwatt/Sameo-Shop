@@ -136,6 +136,11 @@ class services {
         return axios
             .delete(API_URL + 'DeleteAdminMessage', {data: {id}});
     };
+
+    deleteCustomer(customer){
+        return axios
+            .delete(API_URL + 'DeleteCustomer', {data: {customer}});
+    }
 };
 
 export default new services();

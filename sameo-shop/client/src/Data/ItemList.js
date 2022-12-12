@@ -211,6 +211,20 @@ export const ItemList = [
         price: 29.00,
         cover: champagne
     },
+    // {
+    //     id: 'opq',
+    //     name: "Massage solo 30'",
+    //     category: "Prestations",
+    //     price: 35.00,
+    //     cover: massage
+    // },
+    // {
+    //     id: 'rst',
+    //     name: "Massage duo 30'",
+    //     category: "Prestations",
+    //     price: 70.00,
+    //     cover: massage
+    // },
     {
         id: '029',
         name: 'Saint-Amand Triple',

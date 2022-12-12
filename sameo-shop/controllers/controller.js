@@ -4,6 +4,7 @@ const Room = require('../models/room');
 const Message = require('../models/message');
 const Nodemailer = require('nodemailer');
 const AdminMessage = require('../models/adminMessage');
+const customer = require('../models/customer');
 
 exports.takeOrder = (req, res) => {
     let {cart, customer} = req.body;
@@ -114,6 +115,14 @@ exports.newCustomer = (req, res) => {
         .then(() => res.status(201).json({message: 'Client créé'}))
         .catch(error => res.status(400).json({error}));
 };
+
+exports.deleteCustomer = (req, res) => {
+    const customer = req.body.customer;
+    console.log("client supprimé" + customer)
+    Customer.deleteOne({name: customer})
+        .then(() => res.status(200).json({message: "Client supprimé"}))
+        .catch(error => res.status(400).json({error}));
+}
 
 exports.createRoom = (req, res) => {
     let {name, client} = req.body;

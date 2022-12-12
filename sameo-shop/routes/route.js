@@ -3,7 +3,8 @@ const router = express.Router();
 
 const {takeOrder, seeOrder, deleteOrder, getCustomers, newCustomer, createRoom, assignClient, getAssignedClient,
         announceOrder, sendMessage, getMessages, setAsReaded, deleteMessage, setOrderAsDone, isLocked,
-        lockRoom, delockRoom, setOrderAsInPrep, newAdminMessage, getAdminMessage, deleteAdminMessage} = require('../controllers/controller');
+        lockRoom, delockRoom, setOrderAsInPrep, newAdminMessage, getAdminMessage, deleteAdminMessage,
+        deleteCustomer} = require('../controllers/controller');
 
 const {signup, login} = require('../controllers/userController');
 
@@ -32,5 +33,6 @@ router.put('/OrderInPrep', setOrderAsInPrep);
 router.post('/AdminMessage', newAdminMessage);
 router.get('/GetAdminMessage', getAdminMessage);
 router.delete('/DeleteAdminMessage', deleteAdminMessage);
+router.delete('/DeleteCustomer', deleteCustomer);
 
 module.exports = router;
