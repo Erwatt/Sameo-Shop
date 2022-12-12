@@ -32,6 +32,7 @@ import Biereambree from '../Images/biere-ambree.jpg';
 import Biereblonde from '../Images/biere-blonde.jpg';
 import whiskycoca from '../Images/Whisky Coca.jpg';
 import Aperol from '../Images/Aperol.jpg';
+import cocktailMaison from '../Images/cocktailMaison.jpg';
 
 export const ItemList = [
     {
@@ -288,14 +289,14 @@ export const ItemList = [
         price: 7.00,
         cover: whiskycoca
     }
-    ,
-    {
-        id: 'val109',
-        name: 'Saint-Amand Ambrée',
-        category: 'Bière',
-        price: 5.00,
-        cover: Biereambree
-    }
+    // ,
+    // {
+    //     id: 'val109',
+    //     name: 'Saint-Amand Ambrée',
+    //     category: 'Bière',
+    //     price: 5.00,
+    //     cover: Biereambree
+    // }
     ,
     {
         id: 'val110',
@@ -327,5 +328,13 @@ export const ItemList = [
         category: "Cocktail",
         price: 7.00,
         cover: Aperol
+    },
+    {
+        id: 'ckm',
+        name: 'Cocktail Maison',
+        alcoholFree: true,
+        category: 'Cocktail Sans Alcool',
+        price: 4.00,
+        cover: cocktailMaison
     }
 ]
