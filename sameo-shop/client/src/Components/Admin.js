@@ -98,12 +98,14 @@ function Admin({assignedClient, setAssignedClient}){
         Services.deleteMessage(id);
     };
 
-    function handleDone(id){
+    function handleDone(e, id){
+        e.preventDefault();
         Services.setOrderAsDone(id);
         Services.newAdminMessage("Votre commande est prête à être récupérée aux vestiaires", selectedCustomer, true);
     };
 
-    function handlePrep(id){
+    function handlePrep(e, id){
+        e.preventDefault();
         Services.setOrderAsInPrep(id);
         Services.newAdminMessage("Votre commande à bien été prise en compte et est en cours de préparation", selectedCustomer, true);
     };
@@ -116,17 +118,28 @@ function Admin({assignedClient, setAssignedClient}){
         Services.delockRoom(room);
     };
 
+    function handleCustomerDeletion(customer){
+        Services.deleteOrder(customer);
+        Services.deleteCustomer(customer);
+        if (assignedClient == customer){
+            Services.assignClient("room", null);
+        }
+    };
+
 
 
     return (
         <div className="admin_box">
             <div className="admin_element admin_orders">
                 <select name="customersList"  onChange={(e) => setSelectedCustomer(e.target.value)}>
-                    <option>Choisissez un client</option>
+                    <option value={selectedCustomer}>Choisissez un client</option>
                     {customersList.map(({name, firstname}) => (
                         <option value={name} key={name}>{name} {firstname}</option>
                     ))}
                 </select>
+                <form onSubmit={() => handleCustomerDeletion(selectedCustomer)}>
+                    <button className='admin_deleteOrders'>Supprimer le client</button>
+                </form>
                 {ordersList !== [] ?(
                     <div>
                         <form onSubmit={() => handleDelete()}>
@@ -147,7 +160,7 @@ function Admin({assignedClient, setAssignedClient}){
                                                 <h2>{name}</h2>
                                                 <p>Prix: {price}€</p>
                                                 <p>Quantité: {amount}</p>
-                                                <form onSubmit={() => handleDone(_id)}>
+                                                <form onSubmit={(e) => handleDone(e, _id)}>
                                                     <button className="admin-done">Done</button>
                                                 </form>
                                             </li>
@@ -157,7 +170,7 @@ function Admin({assignedClient, setAssignedClient}){
                                                 <h2>{name}</h2>
                                                 <p>Prix: {price}€</p>
                                                 <p>Quantité: {amount}</p>
-                                                <form onSubmit={() => handlePrep(_id)}>
+                                                <form onSubmit={(e) => handlePrep(e, _id)}>
                                                     <button className="admin-done">En préparation</button>
                                                 </form>
                                             </li>
