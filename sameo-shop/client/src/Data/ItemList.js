@@ -2,7 +2,7 @@ import eau from '../Images/eau.jpg';
 import perrier from '../Images/Perrier.jpg';
 import coca from '../Images/Coca Cola.jpg';
 import cocaZero from '../Images/Coca Zéro.jpg';
-import fanta from '../Images/Fanta.jpg';
+import fanta from '../Images/fanta.jpg';
 import iceTea from '../Images/Ice Tea.jpg';
 import dadapeche from '../Images/Dada Pêche.jpg'
 import dadalycheee from '../Images/Dada Lychee.jpg'
@@ -15,27 +15,33 @@ import chocolatChaud from '../Images/ChocolatChaud.jpg';
 import capuccino from '../Images/Capuccino.jpg';
 import Tinyblue from '../Images/Tiny Blue.jpg';
 import RIO from '../Images/RIO.jpg';
+import CIAGO from '../Images/RIO.jpg';
 import softpinaColada from '../Images/Pina Colada.jpg'
 import gingersofty from '../Images/GINGER.jpg'
 import spritzol from '../Images/Spritzol.jpg'
 import maitai from '../Images/Mai Tai.jpg'
-import Sexonthebeach from '../Images/Sex on the Beach.jpg';
+import Sexonthebeach from '../Images/Sex on the beach.jpg';
 import pinaColada from '../Images/Pina Colada.jpg'
 import gingerhotty from '../Images/GINGER.jpg'
-import whiskycoca from '../Images/Whisky Coca.jpg';
+// import whiskycoca from '../Images/Whisky Coca.jpg';
 import champagne from '../Images/champagne.jpg';
 import biereTriple from '../Images/Bière Triple.jpg';
 import biereBlanche from '../Images/Bière Blanche.jpg';
 import Biereblonde from '../Images/Bière Blonde.jpg';
-import Biereambree from '../Images/Bière Ambrée.jpg';
+// import Biereambree from '../Images/Bière Ambrée.jpg';
 import mignardise from '../Images/assiette-mignardises.jpg';
 import cafeGourmand from '../Images/cafe-gourmand.jpg';
 import theGourmand from '../Images/the-gourmand.jpg';
-import Maison2 from '../Images/Maison2.jpg';
-import Maison4 from '../Images/Maison4.jpg';
-import Grignot from '../Images/Grignot.JPG';
-import Grignotplus from '../Images/Grignotplus.JPG';
-import Charcutfrom from '../Images/Charcutfrom.JPG';
+// import Maison2 from '../Images/Maison2.jpg';
+// import Maison4 from '../Images/Maison4.jpg';
+// import Grignot from '../Images/Grignot.JPG';
+// import Grignotplus from '../Images/Grignotplus.JPG';
+// import Charcutfrom from '../Images/Charcutfrom.JPG';
+import Frompour2 from '../Images/2023-from.jpg';
+import Charcutpour2 from '../Images/2023-charcut.jpg';
+import Grignotpour2 from '../Images/2023-grignot.jpg';
+import Boucheepour2 from '../Images/2023-bouchee.jpg';
+// import Charcutfrom from '../Images/Charcutfrom.JPG';
 
 
 
@@ -44,7 +50,21 @@ import Charcutfrom from '../Images/Charcutfrom.JPG';
 
 export const ItemList = [
    
+        {
+        id: '002',
+        name: 'Eau Gazeuse',
+        category: 'Les Softs',
+        price: 2.00,
+        cover: perrier
+    },
     {
+        id: '001',
+        name: 'Eau',
+        category: 'Les Softs',
+        price: 0.00,
+        cover: eau
+},  
+   {
         id: '007',
         name: "Dada Pêche",
         category: 'Les Softs',
@@ -108,21 +128,7 @@ export const ItemList = [
         price: 4.00,
         cover: citronade
     },
-    {
-        id: '002',
-        name: 'Eau Gazeuse',
-        category: 'Les Softs',
-        price: 2.00,
-        cover: perrier
-    },
-    {
-        id: '001',
-        name: 'Eau',
-        category: 'Les Softs',
-        price: 0.00,
-        cover: eau
-},  
-    {
+     {
         id: '017',
         name: 'Tiny Blue',
         alcoholFree: true,
@@ -137,6 +143,14 @@ export const ItemList = [
         category: 'Les Mocktails (sans alcool)',
         price: 5.00,
         cover: RIO
+    },
+      {
+        id: '0016',
+        name: 'Ciago',
+        alcoholFree: true,
+        category: 'Les Mocktails (sans alcool)',
+        price: 5.00,
+        cover: CIAGO
     },
     {
         id: '019',
@@ -189,13 +203,13 @@ export const ItemList = [
         price:  9.00,
         cover: gingerhotty
     },
-    {
-        id: '026',
-        name: "Whisky Coca 🍸",
-        category: "Les Cocktails (alcool)",
-        price: 7.00,
-        cover: whiskycoca
-    },
+    // {
+    //     id: '026',
+    //     name: "Whisky Coca 🍸",
+    //     category: "Les Cocktails (alcool)",
+    //     price: 7.00,
+    //     cover: whiskycoca
+    // },
 
     {
         id: '027',
@@ -239,13 +253,13 @@ export const ItemList = [
         price: 5.00,
         cover: biereBlanche
     },
-    {
-        id: '031',
-        name: 'Saint-Amand Ambrée',
-        category: 'Bière',
-        price: 5.00,
-        cover: Biereambree
-    }
+    // {
+    //     id: '031',
+    //     name: 'Saint-Amand Ambrée',
+    //     category: 'Bière',
+    //     price: 5.00,
+    //     cover: Biereambree
+    // }
     ,
     {
         id: '032',
@@ -255,63 +269,96 @@ export const ItemList = [
         cover: Biereblonde
     }
     ,  
+    // {
+    //     id: '033',
+    //     name: "Grignot'",
+    //     category: "Les Snacks Salés",
+    //     price: 4.00,
+    //     cover: Grignot
+    // }
+    // ,
+    // {
+    //     id: '034',
+    //     name: "Grignot' plus pour 2",
+    //     category: "Les Snacks Salés",
+    //     price: 9.00,
+    //     cover: Grignotplus
+    // }
+    // ,
+    // {
+    //     id: '035',
+    //     name: "Grignot' plus pour 4",
+    //     category: "Les Snacks Salés",
+    //     price: 15.00,
+    //     cover: Grignotplus
+    // }
+    // ,
+    // {
+    //     id: '036',
+    //     name: "Charcut' & Fromage pour 2",
+    //     category: "Les Snacks Salés",
+    //     price: 11.00,
+    //     cover: Charcutfrom
+    // }
+    // ,
+    // {
+    //     id: '037',
+    //     name: "Charcut' & Fromage pour 4",
+    //     category: "Les Snacks Salés",
+    //     price: 17.00,
+    //     cover: Charcutfrom
+    // }
+    // ,
+    // {
+    //     id: '038',
+    //     name: "Fait Maison pour 2",
+    //     category: "Les Snacks Salés",
+    //     price: 6,
+    //     cover: Maison2
+    // }
+    // ,
+    // {
+    //     id: '039',
+    //     name: "Fait Maison pour 4",
+    //     category: "Les Snacks Salés",
+    //     price: 10.00,
+    //     cover: Maison4
+    // }
+   
+    // ,
     {
-        id: '033',
-        name: "Grignot'",
+        id: '040',
+        name: "GRIGNOT pour 2",
         category: "Les Snacks Salés",
         price: 4.00,
-        cover: Grignot
+        cover: Grignotpour2
     }
-    ,
+       ,
     {
-        id: '034',
-        name: "Grignot' plus pour 2",
+        id: '041',
+        name: "CHARCUT pour 2",
         category: "Les Snacks Salés",
-        price: 9.00,
-        cover: Grignotplus
+        price: 5.00,
+        cover: Charcutpour2
     }
-    ,
+       ,
+
     {
-        id: '035',
-        name: "Grignot' plus pour 4",
+        id: '042',
+        name: "FROM pour 2",
         category: "Les Snacks Salés",
-        price: 15.00,
-        cover: Grignotplus
+        price: 6.00,
+        cover: Frompour2
     }
-    ,
+       ,
     {
-        id: '036',
-        name: "Charcut' & Fromage pour 2",
+        id: '043',
+        name: "Bouchées pour 2",
         category: "Les Snacks Salés",
-        price: 11.00,
-        cover: Charcutfrom
+        price: 6.00,
+        cover: Boucheepour2
     }
-    ,
-    {
-        id: '037',
-        name: "Charcut' & Fromage pour 4",
-        category: "Les Snacks Salés",
-        price: 17.00,
-        cover: Charcutfrom
-    }
-    ,
-    {
-        id: '038',
-        name: "Fait Maison pour 2",
-        category: "Les Snacks Salés",
-        price: 6,
-        cover: Maison2
-    }
-    ,
-    {
-        id: '039',
-        name: "Fait Maison pour 4",
-        category: "Les Snacks Salés",
-        price: 10.00,
-        cover: Maison4
-    }
-   
-    ,
+       ,
      
     {
         id: '012',
