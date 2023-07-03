@@ -2,7 +2,7 @@ import eau from '../Images/eau.jpg';
 import perrier from '../Images/Perrier.jpg';
 import coca from '../Images/Coca Cola.jpg';
 import cocaZero from '../Images/Coca Zéro.jpg';
-import fanta from '../Images/Fanta.jpg';
+import fanta from '../Images/fanta.jpg';
 import iceTea from '../Images/Ice Tea.jpg';
 import dadapeche from '../Images/Dada Pêche.jpg'
 import dadalycheee from '../Images/Dada Lychee.jpg'
@@ -20,7 +20,7 @@ import softpinaColada from '../Images/Pina Colada.jpg'
 import gingersofty from '../Images/GINGER.jpg'
 import spritzol from '../Images/Spritzol.jpg'
 import maitai from '../Images/Mai Tai.jpg'
-import Sexonthebeach from '../Images/Sex on the Beach.jpg';
+import Sexonthebeach from '../Images/Sex on the beach.jpg';
 import pinaColada from '../Images/Pina Colada.jpg'
 import gingerhotty from '../Images/GINGER.jpg'
 // import whiskycoca from '../Images/Whisky Coca.jpg';
